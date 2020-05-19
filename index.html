@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around the US</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="page">
+
+        <header class="header">
+            <a class="header__link" href="#"><img src="./images/white header.png" alt="" class="header__logo"></a>
+        </header>
+
+        <section class="profile">
+            <div class="profile__avatar">
+                <img class="profile__avatar-image"  src="./images/profile.png" alt="image of the profile">
+            </div>
+
+            <div class="profile__info">
+                <h2 class="profile__name">Jacques Cousteau</h2>
+                <p class="profile__profession">Explorer</p>
+                <button class="profile__info-btn"> </button>
+            </div>
+
+            <div class="profile__button"> 
+                <button class="profile__button-add"> <img src="./images/plus.png" alt="">  </button>
+            </div>
+
+        </section>
+
+        <section class="elements">
+            <ul class="elements__list">
+                <li class="elements__item">
+                    <img class="elements__image"  src="./images/image1png.png" alt="">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Yosemite Valley</h3>
+                        <img class="elements__image-heart" src="./images/heart.png" alt="">
+                    </div>
+
+                </li>
+                <li class="elements__item">
+                    <img class="elements__image" src="./images/image2.png" alt="">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Lake Louise</h3>
+                        <img class="elements__image-heart" src="./images/heart.png" alt="">
+                    </div>
+                </li>
+
+                <li class="elements__item">
+                    <img class="elements__image" src="./images/image3.png" alt="">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Bald Mountains</h3>
+                        <img class="elements__image-heart" src="./images/heart.png" alt="">
+                    </div>
+                </li>
+                <li class="elements__item">
+                    <img class="elements__image" src="./images/image4.png" alt="">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Latemar</h3>
+                        <img class="elements__image-heart" src="./images/heart.png" alt="">
+                    </div>
+                </li>
+                <li class="elements__item">
+                    <img class="elements__image" src="./images/image5.png" alt="">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Vanois National...</h3>
+                        <img class="elements__image-heart" src="./images/heart.png" alt="">
+                    </div>
+                </li>
+                <li class="elements__item">
+                    <img class="elements__image" src="./images/image6.png" alt="">
+                    <div class="elements__info">
+                        <h3 class="elements__title">Lago di Braies</h3>
+                        <img class="elements__image-heart" src="./images/heart.png" alt="">
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+
+        <div class="modal">
+    
+            <div class="modal__info">
+                <button class="button-close" aria-label="close modal" data-close>
+                    <!-- <img class="close-modal-image button-close"  src="./images/Close Icon.png" alt=""> -->
+                </button>
+           
+
+                <p class="modal__title"> Edit Profile</p>
+                <form class="form">
+                    <input class="form__field1" type="text" id="name" name="name" placeholder="Jacques Cousteau"><br>
+                    <input  class="form__field2" type="text" id="job" name="job" value="Explorer"><br><br>
+                    <input class="save__button" type="submit" value="Save">
+                </form> 
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="footer__text"> &#169; 2020 Around The U.S </p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+
+.header__logo{
+    width: 173px;
+    height: 33px;
+    padding-bottom: 41px;
+    margin-top: 45px;
+ }
+ /* .header__logo:before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+ } */
+ .header__logo:hover{
+    cursor: pointer;
+    background: #000000;
+
+ }
+ @media screen and (max-width: 320px){
+     .header__logo{
+         max-width: 126px;
+         height: 24px;
+         margin-left: 27px;
+         padding-bottom: 32px;
+         margin-top: 28px;
+     }
+ }
+ 
