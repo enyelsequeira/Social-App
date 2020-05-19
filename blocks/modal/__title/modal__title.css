@@ -1,0 +1,14 @@
+
+.modal__title{
+    width: 330px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin-left: 36px;
+    margin: auto;
+    margin-bottom: 64px;
+    margin-top: 34px;
+  }
