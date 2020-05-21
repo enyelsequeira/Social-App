@@ -6,12 +6,19 @@
     height: 50px;
     margin-top: 35px;
     margin-bottom: 35px;
+    background-image: url('../../../images/plussing.svg');
+    background-repeat: no-repeat;
+    background-position: center;
 
 }
 .profile__button-add:hover{
     border: 2px solid rgba(255, 255, 255, 0.6);
     cursor: pointer;
     background: rgba(0, 0, 0, 0.8);
+    background-image: url('../../../images/hoverplus.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
   
 }
 

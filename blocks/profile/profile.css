@@ -8,8 +8,6 @@
 @import url('./__profession/profile__profession.css');
 
 .profile{
-    display: flex;
-    justify-content: space-between;
     max-width: 882px;
     margin: auto;
     display: flex;

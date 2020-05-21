@@ -7,4 +7,10 @@
     margin: auto;
     color: black;
     padding-bottom: 31px;   
+
+    position: absolute;
+    bottom:0;
+    margin: 0;
+    left: 21px;
+    right: 15px;
 }

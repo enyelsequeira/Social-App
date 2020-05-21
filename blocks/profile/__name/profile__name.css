@@ -2,7 +2,7 @@
     margin: 0;
     width: 380px;
     height: 43px;
-    font-family: Inter;
+    font-family:'Inter','Arial', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 42px;
@@ -11,6 +11,7 @@
     grid-area: pn;
     margin-bottom: 16px;
     margin-right: 24px;
+    text-overflow: ellipsis;
 }
 @media screen and (max-width: 320px){
     .profile__name{

@@ -9,7 +9,7 @@ const modal = document.querySelector('.modal')
 // selecting form
 const form = document.querySelector('.modal__form')
 
-let save = document.querySelector('.modal__save-button');
+const save = document.querySelector('.modal__save-button');
 
 const formSubmitHandler = (e)=>{
   e.preventDefault();
@@ -21,9 +21,7 @@ const formSubmitHandler = (e)=>{
   profession.textContent = professionInput.value;  
 }
 
-save.addEventListener('click', () => {
-  modal.style.display="none"
-});
+save.addEventListener('click', modalCloseHandler );
 
 form.addEventListener('submit', formSubmitHandler);
 
@@ -31,9 +29,16 @@ openModal.addEventListener('click', ()=>{
   modal.style.display = "block"
 })
 
-closeBtn.addEventListener('click', ()=>{
-  modal.style.display="none"
-})
+closeBtn.addEventListener('click', modalCloseHandler)
+
+function modalCloseHandler(event) {
+  if (
+    (event.target == closeBtn || event.target === save) &&
+    modal.style.display == "block"
+  ) {
+    modal.style.display = "none";
+  }
+}
 
 // close modal by pressing esc 
 // document.addEventListener('keyup', function(e){
