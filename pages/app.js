@@ -11,12 +11,14 @@ const form = document.querySelector('.modal__form')
 
 const save = document.querySelector('.modal__save-button');
 
-const formSubmitHandler = (e)=>{
+// values that need changing
+const nameInput = document.querySelector('.modal__form-name')
+const professionInput = document.querySelector('.modal__form-profession')
+const name = document.querySelector('.profile__name');
+const profession = document.querySelector('.profile__profession')
+
+const formSubmitHandler = (e) =>{
   e.preventDefault();
-  let nameInput = document.querySelector('.modal__form-name')
-  let professionInput = document.querySelector('.modal__form-profession')
-  let name = document.querySelector('.profile__name');
-  let profession = document.querySelector('.profile__profession')
   name.textContent = nameInput.value;
   profession.textContent = professionInput.value;  
 }
@@ -26,23 +28,34 @@ save.addEventListener('click', modalCloseHandler );
 form.addEventListener('submit', formSubmitHandler);
 
 openModal.addEventListener('click', ()=>{
-  modal.style.display = "block"
+  modal.classList.toggle("show-modal")
 })
 
 closeBtn.addEventListener('click', modalCloseHandler)
 
+// const modalCloseHandler = (event) => {
+//   if (
+//     (event.target == closeBtn || event.target === save) &&
+//     modal.classList.toggle("show-modal")
+//   ) {
+//     modal.classList.toggle("show-modal")
+//   }
+// };
+
+//! ? can you explain why the above function does not work the same
+// as the below one? 
+
 function modalCloseHandler(event) {
-  if (
-    (event.target == closeBtn || event.target === save) &&
-    modal.style.display == "block"
-  ) {
-    modal.style.display = "none";
-  }
+
+  if 
+    (event.target == closeBtn || event.target === save)
+    modal.classList.toggle("show-modal")
+  
 }
 
 // close modal by pressing esc 
 // document.addEventListener('keyup', function(e){
-// let key = event.key || event.keyCode;
+// const key = event.key || event.keyCode;
 
 // if (key === 'Escape' || key === 'Esc' || key === 27) {
 //    modal.style.display="none"

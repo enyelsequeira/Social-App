@@ -29,6 +29,10 @@
     opacity: .8;
     z-index: -1;
   }
+  .show-modal {
+   display: block;
+}
+
 
   @media screen and (max-width: 320px) {
     .modal {
