@@ -10,6 +10,15 @@ const modal = document.querySelector('.modal')
 const form = document.querySelector('.modal__form')
 
 const save = document.querySelector('.modal__save-button');
+// Open second modal
+const addBtn = document.querySelector('.profile__button-add')
+//selecting second modal
+const modalAdd = document.querySelector('.modal__card')
+
+addBtn.addEventListener('click', ()=>{
+  modalAdd.classList.toggle("show-modal")
+})
+
 
 // values that need changing
 const nameInput = document.querySelector('.modal__form-name')
@@ -31,19 +40,10 @@ openModal.addEventListener('click', ()=>{
   modal.classList.toggle("show-modal")
 })
 
+
 closeBtn.addEventListener('click', modalCloseHandler)
 
-// const modalCloseHandler = (event) => {
-//   if (
-//     (event.target == closeBtn || event.target === save) &&
-//     modal.classList.toggle("show-modal")
-//   ) {
-//     modal.classList.toggle("show-modal")
-//   }
-// };
 
-//! ? can you explain why the above function does not work the same
-// as the below one? 
 
 function modalCloseHandler(event) {
 
@@ -61,3 +61,4 @@ function modalCloseHandler(event) {
 //    modal.style.display="none"
 // }
 // })
+

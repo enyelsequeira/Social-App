@@ -8,14 +8,265 @@
 @import url('../blocks/modal/modal.css');
 
 
+.elements__trash{
+background-repeat: no-repeat;
+width: 18px;
+height: 19.3px;
+background-size: cover;
+margin-left: 249px;
+margin-top: 18px;
+background-color: Transparent;
+background-image: url('../images/trash.svg');
+border: none;
+}
+.elements__trash:hover{
+    cursor: pointer;
+    background-color: #00000026
+}
+
+.modal__card{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 25px #00000026;
+    border-radius: 10px;
+    display: none; 
+    z-index: 1;
+    left: 0px;
+    top: 0px;
+    background:#1818188f;
+
+
+}
+.modal__card::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .8;
+    z-index: -1;
+
+  }
+  .show-modal {
+    display: block;
+ }
+
+ .modal__card-info{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    width: 430px;
+    margin: auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    top: 195px;
+  }
+
+  .modal__card-form{
+    width: 358px;
+    margin: auto;
+    
+
+}
+.modal__card-title{
+    width: 330px;
+    font-family: 'Inter','Arial', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: auto;
+    margin-bottom: 64px;
+    margin-top: 34px;
+}
+.modal__card-close{
+    position: absolute;
+    width: 41px;
+    height: 41px;
+    background: black;
+    background-image: url('../../../images/black.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    right: -41px;
+    top: -41px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  
+}
+
+
+  
+  .modal__card-form-title{
+    width: 358px;
+    height: 27.26px;
+    border: none;
+    padding-bottom: 13.26px;
+    border-bottom: 1px solid #000000;
+    margin-bottom: 29.74px;
+  
+    font-family: 'Inter','Arial', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+  }
+  .modal__card-form-link{
+    width: 358px;
+    height: 27.26px;
+    border: none;
+    padding-bottom: 13.26px;
+    border-bottom: 1px solid #000000;
+    margin-bottom: 48px;
+  
+    font-family: 'Inter','Arial', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+  
+    color: #000000;
+  }
+
+  .modal__card-create-button{
+    width: 358px;
+    color: #FFFFFF;
+    height: 50.15px;
+    border-radius: 2px;
+    margin-bottom: 36px;
+    background: #000000;
+    font-family: 'Inter','Arial', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+  }
+
+
+@media screen and (max-width: 320px){
+.modal__card{
+    position: fixed;
+    max-width: 240px;
+    box-shadow: 0px 0px 25px #00000026;
+    border-radius: 10px;
+    display: none; 
+    z-index: 1;
+    left: 40px;
+    top: 155px;
+    background: #ffffff;
+    margin: auto;
+
+}
+.modal__card::before{
+    content: "";
+    max-width: 240px;
+    background: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .8;
+    z-index: -1;
+  }
+  .show-modal {
+    display: block;
+ }
 
 
 
+.modal__card-title{
+    width: 185px;
+    font-family: 'Inter','Arial', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    margin: auto;
+    margin-bottom: 36px;
+    margin-top: 30px;
+}
+.modal__card-close{
+    position: absolute;
+    width: 41px;
+    height: 41px;
+    background: black;
+    background-image: url('../../../images/black.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    top: -40px;
+    right: -35px
+  
+}
 
+.modal__card-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:240px;
+    margin: auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+  .modal__card-form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
+  }
+  
+  .modal__card-form-title{
+    width: 200px;
+    height: 24px;
+    border: none;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    margin-bottom: 20px;
+    font-family: 'Inter','Arial', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #C4C4C4;
+  }
+  .modal__card-form-link{
+    width: 200px;
+    height: 24px;
+    border: none;
+    padding-bottom: 13.26px;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    margin-bottom: 36px;
+    font-family: 'Inter','Arial', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #C4C4C4;
+  
+  }
 
-
-
-
-
-
+  .modal__card-create-button{
+    width: 200px;
+    height: 40px;
+    margin-bottom: 30px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    background-color: #000000;
+    border-radius: 2px;
+    color: #FFFFFF;
+    border: none;
+  }
+}
