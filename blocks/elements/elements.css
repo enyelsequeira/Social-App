@@ -4,6 +4,8 @@
 @import url('./__info/elements__info.css');
 @import url('./__title/elements__title.css');
 @import url('./__image-heart/elements__image-heart.css');
+@import url('./__trash/elements__trash.css');
+@import url('./__image-heart_active/elements__image-heart_active.css');
 .elements{
     margin-bottom: 66px;
 }

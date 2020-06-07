@@ -9,4 +9,7 @@
 
 }
 
-
+.elements__image-heart:hover{
+    border: 2px solid red;
+  
+  }
