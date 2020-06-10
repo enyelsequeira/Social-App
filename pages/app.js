@@ -27,7 +27,7 @@ const profession = document.querySelector('.profile__profession');
 //function to toggle the modals
 function toggleModalWindow(modal){
   modal.classList.toggle('modal_active');
-};
+}
 
 //functions for the submission to prevent the default
 const formSubmitHandler = (e) =>{
@@ -109,7 +109,7 @@ const createCard = (placeTitle, placeLink) => {
   cardTitle.textContent = placeTitle; 
   cardImage.style.backgroundImage = `url(${placeLink})`;
   // this opens the image modal Window to see the image bigger
-  cardImage.addEventListener('click', (e)=>{
+  cardImage.addEventListener('click', ()=>{
     image.src = placeLink;
     image.alt = placeTitle;
   caption.textContent = placeTitle;
@@ -117,7 +117,7 @@ const createCard = (placeTitle, placeLink) => {
   });
   //deleting and like buttons
   cardLikeButton.addEventListener('click', ()=>{
-    cardLikeButton.classList.toggle('elements__image-heart_active')
+    cardLikeButton.classList.toggle('elements__image-heart_active');
   });
   cardRemoveButton.addEventListener('click', ()=>{
     cardRemoveButton.parentElement.remove();
@@ -136,12 +136,12 @@ initialCards.forEach((card) =>{
   renderCard(card.name, card.link);
 });
 
-const placeTitle = document.querySelector('.modal__form-title')
-const placeLink = document.querySelector('.modal__form-link')
+const placeTitle = document.querySelector('.modal__form-title');
+const placeLink = document.querySelector('.modal__form-link');
 function newCard(e){
   e.preventDefault();
   renderCard(placeTitle.value, placeLink.value);
   toggleModalWindow(modalAdd);
-};
+}
 
 modalCardBtn.addEventListener('click', newCard);
