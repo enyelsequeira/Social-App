@@ -4,8 +4,6 @@
     height: 361px;
     border-radius: 10px;
     background-color: #ffffff;
-    background-size: 282px 282px;
-    background-repeat: no-repeat;
     position: relative;
 }
 @media screen and (max-width: 320px){

@@ -6,16 +6,7 @@
     padding-bottom: 41px;
     margin-top: 45px;
  }
- /* .header__logo:before{
-    content: "";
-    height: 100%;
-    width: 100%;
-    background: #ffffff;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
- } */
+
  .header__logo:hover{
     cursor: pointer;
     background: #000000;

@@ -31,69 +31,13 @@
 
         <section class="elements">
             <ul class="elements__list">
-                <li class="elements__item" style="background-image: url('./images/image1png.png');">
-                    <button class="elements__trash">  </button>
-                    <div class="elements__info">
-                        <h3 class="elements__title">Yosemite Valley</h3>
-                        <button class="elements__image-heart">  </button>
-                        <!-- <button class="elements__image-heart" src="./images/heart.png" alt="heart"> -->
-                    </div>
-
-                </li>
-                <li class="elements__item" style="background-image: url('./images/image2.png');">
-                    <!-- <img class="elements__image" src="./images/image2.png" alt="Lake louis"> -->
-                    <button class="elements__trash">  </button>
-
-                    <div class="elements__info">
-                        <h3 class="elements__title">Lake Louise</h3>
-                        <button class="elements__image-heart">  </button>
-
-                   </div>
-                </li>
-
-                <li class="elements__item" style="background-image: url('./images/image3.png');">
-                    <!-- <img class="elements__image" src="./images/image3.png" alt="Bald Mountain"> -->
-                    <button class="elements__trash">  </button>
-
-                    <div class="elements__info">
-                        <h3 class="elements__title">Bald Mountains</h3>
-                        <button class="elements__image-heart">  </button>
-                    </div>
-                </li>
-                <li class="elements__item" style="background-image: url('./images/image4.png');">
-                    <!-- <img class="elements__image" src="./images/image4.png" alt="latemar"> -->
-                    <button class="elements__trash">  </button>
-
-                    <div class="elements__info">
-                        <h3 class="elements__title">Latemar</h3>
-                        <button class="elements__image-heart">  </button>
-                    </div>
-                </li>
-                <li class="elements__item" style="background-image: url('./images/image5.png');">
-                    <!-- <img class="elements__image" src="./images/image5.png" alt="Vanois Nationa"> -->
-                    <button class="elements__trash">  </button>
-
-                    <div class="elements__info">
-                        <h3 class="elements__title">Vanois National</h3>
-                        <button class="elements__image-heart">  </button>
-                    </div>
-                </li>
-                <li class="elements__item" style="background-image: url('./images/image6.png');">
-                    <!-- <img class="elements__image" src="./images/image6.png" alt="lago di braies"> -->
-                    <button class="elements__trash">  </button>
-
-                    <div class="elements__info">
-                        <h3 class="elements__title">Lago di Braies</h3>
-                        <button class="elements__image-heart">  </button>
-                    </div>
-                </li>
+             
             </ul>
         </section>
 
     </main>
 
         <div class="modal">
-    
             <div class="modal__info">
                 <button class="modal__close" aria-label="close modal" data-close>
                 </button>
@@ -106,9 +50,17 @@
             </div>
         </div>
 
+        <div class="modal figure">
+            <div class="modal__figure-container">
+              <button class="figure__exit"></button>
+              <img class="figure__image" src="" alt="">
+              <p class="figure__caption"></p>
+            </div>
+          </div>
+        
 
-        <div class="modal__card">
-    
+
+        <div class="modal modal__card">
             <div class="modal__card-info">
                 <button class="modal__card-close" aria-label="close modal" data-close>
                 </button>
@@ -121,15 +73,19 @@
             </div>
         </div>
 
+      
        <template class="elements__template">
-            <li class="elements__item">
-                <button class="elements__trash">  </button>
-                <div class="elements__info">
+           <li class="elements__item">
+            <div class="elements__image"></div>
+            <button class="elements__trash">  </button>
+            <div class="elements__info">
                     <h3 class="elements__title"></h3>
                     <button class="elements__image-heart"></button>
                 </div>
+           
             </li>
        </template>
+
 
 
         <footer class="footer">

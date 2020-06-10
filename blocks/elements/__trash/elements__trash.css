@@ -4,6 +4,7 @@
     height: 19.3px;
     background-size: cover;
     margin-left: 249px;
+    position: absolute;
     margin-top: 18px;
     background-color: Transparent;
     background-image: url('../../../images/trash.svg');

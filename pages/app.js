@@ -1,12 +1,11 @@
-// button to open modal
+// button to open modal information
 const openModal = document.querySelector('.profile__info-btn')
-//close modal
+//close modal infomation
 const closeBtn = document.querySelector('.modal__close')
 //close second modal Card
 const closeAddCard = document.querySelector('.modal__card-close');
 // adding create button card
-const createCard = document.querySelector('.modal__card-create-button')
-console.log(createCard)
+// const createCard = document.querySelector('.modal__card-create-button')
 
 //modal selector
 const modal = document.querySelector('.modal')
@@ -19,31 +18,8 @@ const addBtn = document.querySelector('.profile__button-add')
 //selecting second modal
 const modalAdd = document.querySelector('.modal__card')
 //selecting modal to add cards
-const modalCard = document.querySelector('.modal__card')
-
-//selecting heart button
-document.querySelectorAll('.elements__image-heart').forEach(item =>{
-  item.addEventListener('click', function(e){
-    e.target.classList.toggle('elements__image-heart_active')
-  } )
-})
-
-addBtn.addEventListener('click', ()=>{
-  modalAdd.classList.toggle("show-modal")
-})
-
-closeAddCard.addEventListener('click', ()=>{
-  modalAdd.classList.toggle("show-modal")
-})
-
-//selecting the trash button
-// document.querySelectorAll('.elements__trash').forEach(item =>{
-//   item.addEventListener('click', function(e){
-//     this.parentElement.remove(e.target)
-
-//   })
-// })
-
+const modalCardBtn = document.querySelector('.modal__card-create-button')
+// console.log(modalAdd, modalCardBtn)
 
 // values that need changing
 const nameInput = document.querySelector('.modal__form-name')
@@ -51,136 +27,148 @@ const professionInput = document.querySelector('.modal__form-profession')
 const name = document.querySelector('.profile__name');
 const profession = document.querySelector('.profile__profession')
 
+function toggleModalWindow(modal){
+  modal.classList.toggle('show-modal')
+}
+
 const formSubmitHandler = (e) =>{
   e.preventDefault();
   name.textContent = nameInput.value;
   profession.textContent = professionInput.value;  
+  toggleModalWindow(modal)
 }
 
-save.addEventListener('click', modalCloseHandler );
+// save.addEventListener('click', modalCloseHandler );
 
 form.addEventListener('submit', formSubmitHandler);
-
 openModal.addEventListener('click', ()=>{
-  modal.classList.toggle("show-modal")
+  toggleModalWindow(modal)
+});
+closeBtn.addEventListener('click', ()=>{
+  toggleModalWindow(modal)
+
 })
 
+//add card button modal
+addBtn.addEventListener('click', ()=>{
+  toggleModalWindow(modalAdd)
+})
+closeAddCard.addEventListener('click', ()=>{
+  toggleModalWindow(modalAdd)
+})
 
-closeBtn.addEventListener('click', modalCloseHandler)
+//image modal close
+const imageClose = document.querySelector('.figure__exit');
 
-// closeAddCard.addEventListener('click', closeModalCard)
+imageClose.addEventListener('click', ()=>{
+  toggleModalWindow(modalImageView)
+} )
+
+const initialCards = [
+  {
+      name: "Yosemite Valley",
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+      name: "Vanois National Park",
+      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+  },
+  {
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
+
+//modalImage
+const modalImageView = document.querySelector('.figure')
+console.log(modalImageView)
+//image
+let image = document.querySelector('.figure__image')
+let caption = document.querySelector('.figure__caption')
 
 
+const cardTemplate = document.querySelector('.elements__template').content.querySelector('.elements__item');
+const createCard = (data) => {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitle = cardElement.querySelector('.elements__title')
+  const cardImage = cardElement.querySelector('.elements__image')
+  const cardLikeButton = cardElement.querySelector('.elements__image-heart')
+  const cardRemoveButton = cardElement.querySelector('.elements__trash')
+  cardTitle.textContent = data.name; 
+  cardImage.style.backgroundImage = `url(${data.link})`;
+  
 
+ 
 
-function modalCloseHandler(event) {
-  if 
-    (event.target == closeBtn || event.target === save)
-    modal.classList.toggle("show-modal")    
+  cardImage.addEventListener('click', ()=>{
+    image.src = `${data.link}`;
+  caption.textContent = data.name
+  console.log(image)
+  toggleModalWindow(modalImageView)
+  })
+  cardLikeButton.addEventListener('click', ()=>{
+    cardLikeButton.classList.toggle('elements__image-heart_active')
+  })
+  cardRemoveButton.addEventListener('click', ()=>{
+    cardRemoveButton.parentElement.remove()
+  })
+  
+  return cardElement
 }
-//? closing modalCard is this needed? 
-// function closeModalCard(event) {
-//   if(event.target == closeAddCard || event.target === createCard)
-//   modalCard.classList.toggle("show-modal")
 
-// }
-
-
-//selecting the elements ul
 const ul = document.querySelector('.elements__list')
-
-ul.addEventListener('click', function(e){
-  e.target.closest('.elements__trash').parentElement.remove()
+const renderCard = (data) =>{
+  ul.prepend(createCard(data))
+}
+initialCards.forEach((data) =>{
+  renderCard(data)
 })
 
-// todo creating a new  card keep working on this
-const createNewCard = ( imageValue, titleValue) =>{
-  const pictureTemplate = document.querySelector('.elements__template').content;
-  pictureTemplate.querySelector('.elements__item').style.backgroundImage = `url('${imageValue}')`;
-  pictureTemplate.querySelector('.elements__title').textContent = titleValue
+const newCard = (e)=>{
+e.preventDefault()
+const imageName = document.querySelector('.modal__card-form-title');
+const cardElement = cardTemplate.cloneNode(true);
+let cardTitle = cardElement.querySelector('.elements__title')
+let cardImage = cardElement.querySelector('.elements__image')
+cardTitle.textContent = imageName.value;
+console.log(cardTitle)
+const imageLink = document.querySelector('.modal__card-form-link')
+cardImage.style.backgroundImage = `url(${imageLink.value})`;
+console.log(cardElement)
+ul.prepend(cardElement)
+toggleModalWindow(modalAdd)
+const cardLikeButton = cardElement.querySelector('.elements__image-heart')
+const cardRemoveButton = cardElement.querySelector('.elements__trash')
 
-  // pictureTemplate.querySelectorAll('.elements__item').forEach(item =>{
-  //   item.style.backgroundImage = `url('${imageValue}')`
-  // })
 
-  // pictureTemplate.querySelectorAll('.elements__title').forEach(item =>{
-  //   item.textContent =` ${titleValue}`
-  //   console.log(item)
-  // })
-
-  // pictureTemplate.querySelectorAll('.elements__trash').forEach(item =>{
-  //   item.addEventListener('click', function(e){
-  //     this.parentElement.remove(e.target)
-  
-  //   })
-  // })
-
-  
-  ul.prepend(pictureTemplate);
+cardImage.addEventListener('click', (e)=>{
+  image.src = imageLink.value;
+caption.textContent =  imageName.value
+console.log(image)
+console.log(caption)
+toggleModalWindow(modalImageView)
+})
+cardLikeButton.addEventListener('click', ()=>{
+  cardLikeButton.classList.toggle('elements__image-heart_active')
+})
+cardRemoveButton.addEventListener('click', ()=>{
+  cardRemoveButton.parentElement.remove()
+})
 
 }
-//create card button
-createCard.addEventListener('click', function(e){
-  e.preventDefault()
-  if( e.target === createCard)
-  modalCard.classList.toggle("show-modal")
-  const title = document.querySelector('.modal__card-form-title');
-  const image = document.querySelector('.modal__card-form-link');
-  createNewCard(image.value, title.value)
-  image.value = "";
-  title.value = "";
-  
 
-})
+modalCardBtn.addEventListener('click', newCard)
 
 
-// createCard.addEventListener('click', createNewCard)
-// console.log(createCard)
-//making the button go black
-
-//! old code
-
-// let newElement = document.createElement('li')
-//   newElement.classList.add('elements__item')
-//   let newBackGround = link.value
-//   console.log( 'testt', newBackGround)
-//   newElement.style.backgroundImage = `url('${newBackGround}')`
-//   let info = document.createElement('div')
-//   info.classList.add('elements__info')
-
-//   let title = document.createElement('h3')
-//   title.innerText = placeName.value
-//   title.classList.add('elements__title')
-
-//   let button = document.createElement('button')
-//   button.classList.add('elements__image-heart')
-//   console.log(button)
-
-//   let trashBtn = document.createElement('button')
-//   trashBtn.classList.add('elements__trash')
-
-
-//   info.append(title, button,)
-
-//   newElement.append(info, trashBtn)
-  
-//   ul.appendChild(newElement);
-//   console.log(newElement)
-//   document.querySelectorAll('.elements__trash').forEach(item =>{
-//     item.addEventListener('click', function(e){
-//       this.parentElement.remove(e.target)
-  
-//     })
-//   })
-
-// link.innerHTML = 'https://unsplash.com/photos/T41noNW7esg'
-  // newElement.innerHTML = `
-  //   <li class="elements__item" style="background-image:url(${newBackGround});">
-  //     <button class="elements__trash">  </button>
-  //     <div class="elements__info">
-  //         <h3 class="elements__title">${placeName.value}</h3>
-  //         <button class="elements__image-heart">  </button>
-  //         <!-- <button class="elements__image-heart" src="./images/heart.png" alt="heart"> -->
-  //     </div>
-  //   </li>`
-  // ;
