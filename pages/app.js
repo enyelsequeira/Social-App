@@ -1,29 +1,28 @@
 // button to open modal information
-const openModal = document.querySelector('.profile__info-btn')
+const openModal = document.querySelector('.profile__info-btn');
 //close modal infomation
-const closeBtn = document.querySelector('.modal__close')
+const closeBtn = document.querySelector('.modal__close');
 //close second modal Card
 const closeAddCard = document.querySelector('.modal__card-close');
 
 //modal selector
-const modal = document.querySelector('.modal')
+const modalEdit = document.querySelector('.modal');
 // selecting form
 const form = document.querySelector('.modal__form')
 
-const save = document.querySelector('.modal__save-button');
 // Open second modal
-const addBtn = document.querySelector('.profile__button-add')
+const addBtn = document.querySelector('.profile__button-add');
 //selecting second modal
-const modalAdd = document.querySelector('.modal__card')
+const modalAdd = document.querySelector('.modal__card');
 //selecting modal to add cards
-const modalCardBtn = document.querySelector('.modal__form-create')
+const modalCardBtn = document.querySelector('.modal__form-create');
 
 
 // values that need changing
-const nameInput = document.querySelector('.modal__form-name')
-const professionInput = document.querySelector('.modal__form-profession')
+const nameInput = document.querySelector('.modal__form-name');
+const professionInput = document.querySelector('.modal__form-profession');
 const name = document.querySelector('.profile__name');
-const profession = document.querySelector('.profile__profession')
+const profession = document.querySelector('.profile__profession');
 
 //function to toggle the modals
 function toggleModalWindow(modal){
@@ -41,10 +40,10 @@ const formSubmitHandler = (e) =>{
 //first form
 form.addEventListener('submit', formSubmitHandler);
 openModal.addEventListener('click', ()=>{
-  toggleModalWindow(modal)
+  toggleModalWindow(modalEdit)
 });
 closeBtn.addEventListener('click', ()=>{
-  toggleModalWindow(modal)
+  toggleModalWindow(modalEdit)
 })
 
 
@@ -59,6 +58,8 @@ closeAddCard.addEventListener('click', ()=>{
 
 //image modal close
 const imageClose = document.querySelector('.modal__figure-exit');
+//modalImage
+const modalImageView = document.querySelector('.figure')
 imageClose.addEventListener('click', ()=>{
   toggleModalWindow(modalImageView)
 } )
@@ -91,11 +92,10 @@ const initialCards = [
   }
 ];
 
-//modalImage
-const modalImageView = document.querySelector('.figure')
+
 //image and caption
-let image = document.querySelector('.modal__figure-image')
-let caption = document.querySelector('.modal__figure-caption')
+const image = document.querySelector('.modal__figure-image')
+const caption = document.querySelector('.modal__figure-caption')
 
 
 const cardTemplate = document.querySelector('.elements__template').content.querySelector('.elements__item');
