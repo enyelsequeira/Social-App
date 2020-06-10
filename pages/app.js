@@ -5,7 +5,7 @@ const closeBtn = document.querySelector('.modal__close')
 //close second modal Card
 const closeAddCard = document.querySelector('.modal__card-close');
 // adding create button card
-// const createCard = document.querySelector('.modal__card-create-button')
+// const createCard = document.querySelector('.modal__form-create')
 
 //modal selector
 const modal = document.querySelector('.modal')
@@ -18,7 +18,7 @@ const addBtn = document.querySelector('.profile__button-add')
 //selecting second modal
 const modalAdd = document.querySelector('.modal__card')
 //selecting modal to add cards
-const modalCardBtn = document.querySelector('.modal__card-create-button')
+const modalCardBtn = document.querySelector('.modal__form-create')
 // console.log(modalAdd, modalCardBtn)
 
 // values that need changing
