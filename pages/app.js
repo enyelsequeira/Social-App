@@ -100,23 +100,22 @@ const caption = document.querySelector('.modal__figure-caption')
 
 const cardTemplate = document.querySelector('.elements__template').content.querySelector('.elements__item');
 //creating cards from the giving array
-const createCard = (data) => {
+const createCard = (placeTitle, placeLink) => {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector('.elements__title')
   const cardImage = cardElement.querySelector('.elements__image')
   const cardLikeButton = cardElement.querySelector('.elements__image-heart')
   const cardRemoveButton = cardElement.querySelector('.elements__trash')
-  cardTitle.textContent = data.name; 
-  cardImage.style.backgroundImage = `url(${data.link})`;
-  
+  cardTitle.textContent = placeTitle; 
+  cardImage.style.backgroundImage = `url(${placeLink})`;
+
   // this opens the image modal Window to see the image bigger
-  cardImage.addEventListener('click', ()=>{
-    image.src = `${data.link}`;
-    image.alt = data.name
-  caption.textContent = data.name
+  cardImage.addEventListener('click', (e)=>{
+    image.src = placeLink;
+    image.alt = placeTitle
+  caption.textContent = placeTitle
   toggleModalWindow(modalImageView)
   })
-
   //deleting and like buttons
   cardLikeButton.addEventListener('click', ()=>{
     cardLikeButton.classList.toggle('elements__image-heart_active')
@@ -124,6 +123,7 @@ const createCard = (data) => {
   cardRemoveButton.addEventListener('click', ()=>{
     cardRemoveButton.parentElement.remove()
   })
+
   
   //we need to return the elements
   return cardElement
@@ -131,44 +131,20 @@ const createCard = (data) => {
 
 const ul = document.querySelector('.elements__list')
 //this render the cards
-const renderCard = (data) =>{
-  ul.prepend(createCard(data))
+const renderCard = (placeTitle, placeLink) =>{
+  ul.prepend(createCard(placeTitle, placeLink))
 }
 //for each data we do this to render cards
-initialCards.forEach((data) =>{
-  renderCard(data)
+initialCards.forEach((card) =>{
+  renderCard(card.name, card.link)
 })
 
-//creating new Cards
-const newCard = (e)=>{
-e.preventDefault()
-const imageName = document.querySelector('.modal__form-title');
-const cardElement = cardTemplate.cloneNode(true);
-let cardTitle = cardElement.querySelector('.elements__title')
-let cardImage = cardElement.querySelector('.elements__image')
-cardTitle.textContent = imageName.value;
-const imageLink = document.querySelector('.modal__form-link')
-cardImage.style.backgroundImage = `url(${imageLink.value})`;
-ul.prepend(cardElement)
-toggleModalWindow(modalAdd)
-const cardLikeButton = cardElement.querySelector('.elements__image-heart')
-const cardRemoveButton = cardElement.querySelector('.elements__trash')
-
-cardImage.addEventListener('click', (e)=>{
-  image.src = imageLink.value;
-  image.alt = imageName.value
-caption.textContent =  imageName.value
-console.log(image.alt)
-toggleModalWindow(modalImageView)
-})
-cardLikeButton.addEventListener('click', ()=>{
-  cardLikeButton.classList.toggle('elements__image-heart_active')
-})
-cardRemoveButton.addEventListener('click', ()=>{
-  cardRemoveButton.parentElement.remove()
-})
+const placeTitle = document.querySelector('.modal__form-title')
+const placeLink = document.querySelector('.modal__form-link')
+function newCard(e){
+  e.preventDefault()
+  renderCard(placeTitle.value, placeLink.value)
+  toggleModalWindow(modalAdd)
 }
-//save button to add new card 
+
 modalCardBtn.addEventListener('click', newCard)
-
-
