@@ -5,7 +5,8 @@
     border-radius: 2px;
     margin-bottom: 36px;
     background: #000000;
-    font-family: 'Inter','Arial', sans-serif;
+      font-family: 'Inter', 'Arial', sans-serif;
+ 
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
@@ -21,7 +22,8 @@
       width: 200px;
       height: 40px;
       margin-bottom: 30px;
-      font-family: Inter;
+        font-family: 'Inter', 'Arial', sans-serif;
+ Inter;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;

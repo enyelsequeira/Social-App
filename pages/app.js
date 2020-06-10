@@ -58,7 +58,7 @@ closeAddCard.addEventListener('click', ()=>{
 })
 
 //image modal close
-const imageClose = document.querySelector('.figure__exit');
+const imageClose = document.querySelector('.modal__figure-exit');
 
 imageClose.addEventListener('click', ()=>{
   toggleModalWindow(modalImageView)
@@ -93,10 +93,9 @@ const initialCards = [
 
 //modalImage
 const modalImageView = document.querySelector('.figure')
-console.log(modalImageView)
 //image
-let image = document.querySelector('.figure__image')
-let caption = document.querySelector('.figure__caption')
+let image = document.querySelector('.modal__figure-image')
+let caption = document.querySelector('.modal__figure-caption')
 
 
 const cardTemplate = document.querySelector('.elements__template').content.querySelector('.elements__item');
@@ -114,8 +113,8 @@ const createCard = (data) => {
 
   cardImage.addEventListener('click', ()=>{
     image.src = `${data.link}`;
+    image.alt = data.name
   caption.textContent = data.name
-  console.log(image)
   toggleModalWindow(modalImageView)
   })
   cardLikeButton.addEventListener('click', ()=>{
@@ -143,10 +142,9 @@ const cardElement = cardTemplate.cloneNode(true);
 let cardTitle = cardElement.querySelector('.elements__title')
 let cardImage = cardElement.querySelector('.elements__image')
 cardTitle.textContent = imageName.value;
-console.log(cardTitle)
 const imageLink = document.querySelector('.modal__form-link')
 cardImage.style.backgroundImage = `url(${imageLink.value})`;
-console.log(cardElement)
+
 ul.prepend(cardElement)
 toggleModalWindow(modalAdd)
 const cardLikeButton = cardElement.querySelector('.elements__image-heart')
@@ -155,9 +153,9 @@ const cardRemoveButton = cardElement.querySelector('.elements__trash')
 
 cardImage.addEventListener('click', (e)=>{
   image.src = imageLink.value;
+  image.alt = imageName.value
 caption.textContent =  imageName.value
-console.log(image)
-console.log(caption)
+console.log(image.alt)
 toggleModalWindow(modalImageView)
 })
 cardLikeButton.addEventListener('click', ()=>{

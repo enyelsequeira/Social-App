@@ -5,6 +5,9 @@
 @import url('./__info/modal__info.css');
 @import url('./__save-button/modal__save-button.css');
 @import url('./__title/modal__title.css');
+@import url('./__figure-container/modal__figure-container.css');
+@import url('./__figure-image/modal__figure-image.css');
+@import url('./__figure-caption/modal__figure-caption.css');
 .modal{
     position: fixed;
     width: 100%;
@@ -50,5 +53,16 @@
       left: 0px;
       top: 0px;
       background:#1818188f;
+      visibility:hidden;
+    opacity:0;
+    transition:visibility 0s linear .5s,opacity .5s linear;
     }
+    .show-modal {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+   
+   }
+   
   }
