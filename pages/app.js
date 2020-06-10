@@ -4,8 +4,6 @@ const openModal = document.querySelector('.profile__info-btn')
 const closeBtn = document.querySelector('.modal__close')
 //close second modal Card
 const closeAddCard = document.querySelector('.modal__card-close');
-// adding create button card
-// const createCard = document.querySelector('.modal__form-create')
 
 //modal selector
 const modal = document.querySelector('.modal')
@@ -19,7 +17,7 @@ const addBtn = document.querySelector('.profile__button-add')
 const modalAdd = document.querySelector('.modal__card')
 //selecting modal to add cards
 const modalCardBtn = document.querySelector('.modal__form-create')
-// console.log(modalAdd, modalCardBtn)
+
 
 // values that need changing
 const nameInput = document.querySelector('.modal__form-name')
@@ -27,10 +25,12 @@ const professionInput = document.querySelector('.modal__form-profession')
 const name = document.querySelector('.profile__name');
 const profession = document.querySelector('.profile__profession')
 
+//function to toggle the modals
 function toggleModalWindow(modal){
   modal.classList.toggle('show-modal')
 }
 
+//functions for the submission to prevent the default
 const formSubmitHandler = (e) =>{
   e.preventDefault();
   name.textContent = nameInput.value;
@@ -38,16 +38,15 @@ const formSubmitHandler = (e) =>{
   toggleModalWindow(modal)
 }
 
-// save.addEventListener('click', modalCloseHandler );
-
+//first form
 form.addEventListener('submit', formSubmitHandler);
 openModal.addEventListener('click', ()=>{
   toggleModalWindow(modal)
 });
 closeBtn.addEventListener('click', ()=>{
   toggleModalWindow(modal)
-
 })
+
 
 //add card button modal
 addBtn.addEventListener('click', ()=>{
@@ -57,12 +56,13 @@ closeAddCard.addEventListener('click', ()=>{
   toggleModalWindow(modalAdd)
 })
 
+
 //image modal close
 const imageClose = document.querySelector('.modal__figure-exit');
-
 imageClose.addEventListener('click', ()=>{
   toggleModalWindow(modalImageView)
 } )
+
 
 const initialCards = [
   {
@@ -93,12 +93,13 @@ const initialCards = [
 
 //modalImage
 const modalImageView = document.querySelector('.figure')
-//image
+//image and caption
 let image = document.querySelector('.modal__figure-image')
 let caption = document.querySelector('.modal__figure-caption')
 
 
 const cardTemplate = document.querySelector('.elements__template').content.querySelector('.elements__item');
+//creating cards from the giving array
 const createCard = (data) => {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector('.elements__title')
@@ -108,15 +109,15 @@ const createCard = (data) => {
   cardTitle.textContent = data.name; 
   cardImage.style.backgroundImage = `url(${data.link})`;
   
-
- 
-
+  // this opens the image modal Window to see the image bigger
   cardImage.addEventListener('click', ()=>{
     image.src = `${data.link}`;
     image.alt = data.name
   caption.textContent = data.name
   toggleModalWindow(modalImageView)
   })
+
+  //deleting and like buttons
   cardLikeButton.addEventListener('click', ()=>{
     cardLikeButton.classList.toggle('elements__image-heart_active')
   })
@@ -124,17 +125,21 @@ const createCard = (data) => {
     cardRemoveButton.parentElement.remove()
   })
   
+  //we need to return the elements
   return cardElement
 }
 
 const ul = document.querySelector('.elements__list')
+//this render the cards
 const renderCard = (data) =>{
   ul.prepend(createCard(data))
 }
+//for each data we do this to render cards
 initialCards.forEach((data) =>{
   renderCard(data)
 })
 
+//creating new Cards
 const newCard = (e)=>{
 e.preventDefault()
 const imageName = document.querySelector('.modal__form-title');
@@ -144,12 +149,10 @@ let cardImage = cardElement.querySelector('.elements__image')
 cardTitle.textContent = imageName.value;
 const imageLink = document.querySelector('.modal__form-link')
 cardImage.style.backgroundImage = `url(${imageLink.value})`;
-
 ul.prepend(cardElement)
 toggleModalWindow(modalAdd)
 const cardLikeButton = cardElement.querySelector('.elements__image-heart')
 const cardRemoveButton = cardElement.querySelector('.elements__trash')
-
 
 cardImage.addEventListener('click', (e)=>{
   image.src = imageLink.value;
@@ -164,9 +167,8 @@ cardLikeButton.addEventListener('click', ()=>{
 cardRemoveButton.addEventListener('click', ()=>{
   cardRemoveButton.parentElement.remove()
 })
-
 }
-
+//save button to add new card 
 modalCardBtn.addEventListener('click', newCard)
 
 
