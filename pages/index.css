@@ -89,7 +89,7 @@
 
 
   
-  .modal__card-form-title{
+  .modal__form-title{
     width: 358px;
     height: 27.26px;
     border: none;
@@ -104,7 +104,7 @@
     line-height: 17px;
     color: #000000;
   }
-  .modal__card-form-link{
+  .modal__form-link{
     width: 358px;
     height: 27.26px;
     border: none;
@@ -215,7 +215,7 @@
 
   }
   
-  .modal__card-form-title{
+  .modal__form-title{
     width: 200px;
     height: 24px;
     border: none;
@@ -229,7 +229,7 @@
     line-height: 15px;
     color: #C4C4C4;
   }
-  .modal__card-form-link{
+  .modal__form-link{
     width: 200px;
     height: 24px;
     border: none;

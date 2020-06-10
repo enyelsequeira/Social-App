@@ -138,13 +138,13 @@ initialCards.forEach((data) =>{
 
 const newCard = (e)=>{
 e.preventDefault()
-const imageName = document.querySelector('.modal__card-form-title');
+const imageName = document.querySelector('.modal__form-title');
 const cardElement = cardTemplate.cloneNode(true);
 let cardTitle = cardElement.querySelector('.elements__title')
 let cardImage = cardElement.querySelector('.elements__image')
 cardTitle.textContent = imageName.value;
 console.log(cardTitle)
-const imageLink = document.querySelector('.modal__card-form-link')
+const imageLink = document.querySelector('.modal__form-link')
 cardImage.style.backgroundImage = `url(${imageLink.value})`;
 console.log(cardElement)
 ul.prepend(cardElement)
