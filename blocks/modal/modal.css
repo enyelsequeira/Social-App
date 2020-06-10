@@ -32,7 +32,7 @@
     opacity: .8;
     z-index: -1;
   }
-  .show-modal {
+  .modal_active {
    display: block;
    visibility: visible;
    opacity: 1;
@@ -57,7 +57,7 @@
     opacity:0;
     transition:visibility 0s linear .5s,opacity .5s linear;
     }
-    .show-modal {
+    .modal_active {
       display: block;
       visibility: visible;
       opacity: 1;

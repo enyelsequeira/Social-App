@@ -26,7 +26,7 @@ const profession = document.querySelector('.profile__profession');
 
 //function to toggle the modals
 function toggleModalWindow(modal){
-  modal.classList.toggle('show-modal');
+  modal.classList.toggle('modal_active');
 };
 
 //functions for the submission to prevent the default
