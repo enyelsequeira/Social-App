@@ -18,16 +18,63 @@ const modalAdd = document.querySelector('.modal__card');
 const modalCardBtn = document.querySelector('.modal__form-create');
 
 
-// values that need changing
+// values that need changing first modal
 const nameInput = document.querySelector('.modal__form-name');
 const professionInput = document.querySelector('.modal__form-profession');
 const name = document.querySelector('.profile__name');
 const profession = document.querySelector('.profile__profession');
 
+const errorForm = document.querySelector('.error')
+ 
 //function to toggle the modals
 function toggleModalWindow(modal){
-  modal.classList.toggle('modal_active');
+  modal.classList.toggle('modal_active')  
+ 
 }
+const test = () =>{
+   const modals = Array.from(document.querySelectorAll(".modal"));
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (e) => {
+      toggleModalWindow(e.target);
+    });
+  });
+}
+test()
+const test2 = () =>{
+  const modals = Array.from(document.querySelectorAll(".modal"));
+    modals.forEach(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.keyCode === 27) {
+        toggleModalWindow(document.querySelector(".modal_active"));
+        console.log(1)
+      }
+    });
+  });
+}
+test2()
+// New Logic separete dont think i need it
+// const clickingOutEsc = () => {
+  // const modals = Array.from(document.querySelectorAll(".modal"));
+  
+  // modals.forEach((modal) => {
+  //   modal.addEventListener("click", (e) => {
+  //     toggleModalWindow(e.target);
+  //   });
+  // });
+
+  // modals.forEach(() => {
+  //   document.addEventListener("keydown", (e) => {
+  //     if (e.keyCode === 27) {
+  //       toggleModalWindow(document.querySelector(".modal_active"));
+  //     }
+  //   });
+  // });
+// };
+
+// clickingOutEsc()
+
+
+
 
 //functions for the submission to prevent the default
 const formSubmitHandler = (e) =>{
@@ -145,3 +192,4 @@ function newCard(e){
 }
 
 modalCardBtn.addEventListener('click', newCard);
+

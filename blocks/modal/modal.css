@@ -8,6 +8,10 @@
 @import url('./__figure-container/modal__figure-container.css');
 @import url('./__figure-image/modal__figure-image.css');
 @import url('./__figure-caption/modal__figure-caption.css');
+@import url('./__save-disabled/modal__save-disabled.css');
+@import url('./__form-error/modal__form-error.css');
+@import url('./__form-error_visible/modal__form-error_visible.css');
+
 .modal{
     position: fixed;
     width: 100%;

@@ -40,8 +40,11 @@
                 </button>
                 <p class="modal__title"> Edit Profile</p>
                 <form class="modal__form">
-                    <input class="modal__form-name" type="text" name="name" value="Jacques Cousteau">
-                    <input  class="modal__form-profession" type="text"  name="job" value="Explorer">
+                    <input id="profile-name" class="modal__form-name modal__input" type="text" name="name" value="Jacques Cousteau" required maxlength="40" minlength="2">
+                    <span id="profile-name-error" class="modal__form-error"></span>
+
+                    <input id="profile-text" class="modal__form-profession modal__input" type="text"  name="job" value="Explorer" required maxlength="200" minlength="2">
+                    <span id="profile-text-error" class="modal__form-error"></span>
                     <button class="modal__save-button" type="submit" value="save"> Save </button>
                 </form> 
             </div>
@@ -53,8 +56,12 @@
                 </button>
                 <p class="modal__title"> New Place</p>
                 <form class="modal__form">
-                    <input class="modal__form-name modal__form-title" type="text"  name="Title" value="ImageTitle">
-                    <input  class="modal__form-profession modal__form-link" type="text"  name="Image link" value="ImageLink">
+                    <input id="card-title" class="modal__form-name modal__form-title  modal__input" type="text"  name="Title" value="ImageTitle" required maxlength="30" minlength="1">
+                    <span id="card-title-error" class="modal__form-error"></span>
+
+                    <input id="card-url"  type="url" class="modal__form-profession modal__form-link  modal__input" type="text"  name="Image link" value="ImageLink" required >
+                    <span id="card-url-error" class="modal__form-error"></span>
+
                     <button class="modal__save-button modal__form-create" type="submit" value="save"> Create </button>
                 </form> 
             </div>
@@ -91,6 +98,8 @@
             <p class="footer__text"> &#169; 2020 Around The U.S </p>
         </footer>
     </div>
+     
     <script src="./pages/app.js"></script>
+    <script src="./pages/validation.js"></script>
 </body>
 </html>
