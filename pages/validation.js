@@ -57,11 +57,3 @@ function enableValidation({formSelector, inputSelector, submitButtonSelector, ..
     })
 }
 
-enableValidation({
-    formSelector: ".modal__form",
-    inputSelector: ".modal__input",
-    submitButtonSelector: ".modal__save-button",
-    inactiveButtonClass: "modal__save-disabled",
-    inputErrorClass: "modal__form-error",
-    errorClass: "modal__form-error_visible"
-  });

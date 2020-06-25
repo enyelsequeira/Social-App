@@ -31,48 +31,31 @@ function toggleModalWindow(modal){
   modal.classList.toggle('modal_active')  
  
 }
-const test = () =>{
-   const modals = Array.from(document.querySelectorAll(".modal"));
-  modals.forEach((modal) => {
-    modal.addEventListener("click", (e) => {
-      toggleModalWindow(e.target);
-    });
-  });
+
+function closeOverlay(e){
+  toggleModalWindow(e.target.closest(".modal"))
+  e.target.removeEventListener("click", closeOverlay)
 }
-test()
-const test2 = () =>{
-  const modals = Array.from(document.querySelectorAll(".modal"));
-    modals.forEach(() => {
-    document.addEventListener("keydown", (e) => {
-      if (e.keyCode === 27) {
-        toggleModalWindow(document.querySelector(".modal_active"));
-        console.log(1)
-      }
-    });
+
+function escKey(e){
+  if(e.keyCode === 27){
+    toggleModalWindow(document.querySelector('.modal_active'));
+  }
+  e.target.removeEventListener('keyup', escKey)
+};
+
+const closingModal =() =>{
+  const modals = Array.from(document.querySelectorAll('.modal'));
+
+  modals.forEach((modal)=>{
+    modal.addEventListener("click", closeOverlay)
   });
+
+  modals.forEach(()=>{
+    document.addEventListener('keyup', escKey)
+  })
 }
-test2()
-// New Logic separete dont think i need it
-// const clickingOutEsc = () => {
-  // const modals = Array.from(document.querySelectorAll(".modal"));
-  
-  // modals.forEach((modal) => {
-  //   modal.addEventListener("click", (e) => {
-  //     toggleModalWindow(e.target);
-  //   });
-  // });
-
-  // modals.forEach(() => {
-  //   document.addEventListener("keydown", (e) => {
-  //     if (e.keyCode === 27) {
-  //       toggleModalWindow(document.querySelector(".modal_active"));
-  //     }
-  //   });
-  // });
-// };
-
-// clickingOutEsc()
-
+closingModal()
 
 
 
