@@ -38,15 +38,14 @@ function closeOut(evt) {
   evt.target.removeEventListener("click", closeOut);
 }
 
-function escKeyOverlay(e) {
-  const escKeyCode = 27;
-  if (e.keyCode === escKeyCode) {
+function escKey(e) {
+  if (e.keyCode === 27) {
     toggleModalWindow(document.querySelector(".modal_active"));
   }
-  e.target.removeEventListener("keyup", escKeyOverlay);
+  e.target.removeEventListener("keyup", escKey);
 }
 
-const altCloseModal = () => {
+const closingModals = () => {
   const modals = Array.from(document.querySelectorAll(".modal"));
   
   modals.forEach((modalElem) => {
@@ -55,11 +54,11 @@ const altCloseModal = () => {
    
 
   modals.forEach(() => {
-    document.addEventListener("keyup", escKeyOverlay);
+    document.addEventListener("keyup", escKey);
   });
 };
 
-altCloseModal();
+closingModals();
 
 
 
