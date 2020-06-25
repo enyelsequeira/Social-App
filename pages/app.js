@@ -24,7 +24,6 @@ const professionInput = document.querySelector('.modal__form-profession');
 const name = document.querySelector('.profile__name');
 const profession = document.querySelector('.profile__profession');
 
-const errorForm = document.querySelector('.error')
  
 //function to toggle the modals
 function toggleModalWindow(modal){
@@ -39,7 +38,8 @@ function closeOut(evt) {
 }
 
 function escKey(e) {
-  if (e.keyCode === 27) {
+  const escKeyNum = 27;
+  if (e.keyCode === escKeyNum) {
     toggleModalWindow(document.querySelector(".modal_active"));
   }
   e.target.removeEventListener("keyup", escKey);

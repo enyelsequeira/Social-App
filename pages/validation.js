@@ -1,4 +1,4 @@
-function showErrorMessage(input, form,{errorClass, inputErrorClass, ...rest}){
+function showErrorMessage(input, {errorClass, inputErrorClass}){
     const error = document.querySelector("#" + input.id + '-error')
     error.textContent = input.validationMessage;
 
@@ -6,7 +6,7 @@ function showErrorMessage(input, form,{errorClass, inputErrorClass, ...rest}){
     input.classList.add('inputErrorClass')
 }
 
-function hideErrorMessage(input, form,{errorClass, inputErrorClass, ...rest}){
+function hideErrorMessage(input, {errorClass, inputErrorClass}){
     const error = document.querySelector("#" + input.id + '-error')
     error.classList.remove('errorClass')
     input.classList.remove('inputErrorClass')
@@ -24,11 +24,12 @@ function checkInputValidity(input, form, rest){
 
 }
 
-function toggleButtonsState(inputs, button, {inactiveButtonClass, ...rest}){
+function toggleButtonsState(inputs, button, {inactiveButtonClass}){
     const isValid = inputs.every((input) => input.validity.valid)
 
     if(isValid){
         button.classList.remove(inactiveButtonClass)
+        button.setAttribute("disabled", false)
     }else{
         button.classList.add(inactiveButtonClass)
         button.setAttribute("disabled", true)
