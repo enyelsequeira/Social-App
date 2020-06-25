@@ -32,30 +32,34 @@ function toggleModalWindow(modal){
  
 }
 
-function closeOverlay(e){
-  toggleModalWindow(e.target.closest(".modal"))
-  e.target.removeEventListener("click", closeOverlay)
+///different function to close the modal on esc and clicking outside
+function closeOut(evt) {
+  toggleModalWindow(evt.target.closest(".modal"));
+  evt.target.removeEventListener("click", closeOut);
 }
 
-function escKey(e){
-  if(e.keyCode === 27){
-    toggleModalWindow(document.querySelector('.modal_active'));
+function escKeyOverlay(e) {
+  const escKeyCode = 27;
+  if (e.keyCode === escKeyCode) {
+    toggleModalWindow(document.querySelector(".modal_active"));
   }
-  e.target.removeEventListener('keyup', escKey)
+  e.target.removeEventListener("keyup", escKeyOverlay);
+}
+
+const altCloseModal = () => {
+  const modals = Array.from(document.querySelectorAll(".modal"));
+  
+  modals.forEach((modalElem) => {
+    modalElem.addEventListener("click", closeOut);
+  });
+   
+
+  modals.forEach(() => {
+    document.addEventListener("keyup", escKeyOverlay);
+  });
 };
 
-const closingModal =() =>{
-  const modals = Array.from(document.querySelectorAll('.modal'));
-
-  modals.forEach((modal)=>{
-    modal.addEventListener("click", closeOverlay)
-  });
-
-  modals.forEach(()=>{
-    document.addEventListener('keyup', escKey)
-  })
-}
-closingModal()
+altCloseModal();
 
 
 

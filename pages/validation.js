@@ -1,4 +1,3 @@
-
 function showErrorMessage(input, form,{errorClass, inputErrorClass, ...rest}){
     const error = document.querySelector("#" + input.id + '-error')
     error.textContent = input.validationMessage;
@@ -9,9 +8,10 @@ function showErrorMessage(input, form,{errorClass, inputErrorClass, ...rest}){
 
 function hideErrorMessage(input, form,{errorClass, inputErrorClass, ...rest}){
     const error = document.querySelector("#" + input.id + '-error')
-    error.textContent = '';
     error.classList.remove('errorClass')
     input.classList.remove('inputErrorClass')
+    error.textContent = '';
+
 }
 
 
@@ -57,3 +57,11 @@ function enableValidation({formSelector, inputSelector, submitButtonSelector, ..
     })
 }
 
+enableValidation({
+    formSelector: ".modal__form",
+    inputSelector: ".modal__input",
+    submitButtonSelector: ".modal__save-button",
+    inactiveButtonClass: "modal__save-disabled",
+    inputErrorClass: "modal__form-error",
+    errorClass: "modal__form-error_visible"
+  }); 
