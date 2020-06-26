@@ -1,15 +1,16 @@
-function showErrorMessage(input, {errorClass, inputErrorClass}){
+function showErrorMessage(input, form,{errorClass, inputErrorClass,}){
     const error = document.querySelector("#" + input.id + '-error')
     error.textContent = input.validationMessage;
 
-    error.classList.add('errorClass')
-    input.classList.add('inputErrorClass')
+    error.classList.add(errorClass)
+    // console.log(errorClass, error)
+    input.classList.add(inputErrorClass)
 }
 
-function hideErrorMessage(input, {errorClass, inputErrorClass}){
+function hideErrorMessage(input, form,{errorClass, inputErrorClass, ...rest}){
     const error = document.querySelector("#" + input.id + '-error')
-    error.classList.remove('errorClass')
-    input.classList.remove('inputErrorClass')
+    error.classList.remove(errorClass)
+    input.classList.remove(inputErrorClass)
     error.textContent = '';
 
 }
@@ -24,7 +25,7 @@ function checkInputValidity(input, form, rest){
 
 }
 
-function toggleButtonsState(inputs, button, {inactiveButtonClass}){
+function toggleButtonsState(inputs, button, {inactiveButtonClass, ...rest}){
     const isValid = inputs.every((input) => input.validity.valid)
 
     if(isValid){
