@@ -28,37 +28,64 @@ const profession = document.querySelector('.profile__profession');
 //function to toggle the modals
 function toggleModalWindow(modal){
   modal.classList.toggle('modal_active')  
- 
 }
+
+// function formClose(e){
+//   if(e.target === e.target.closest('.modal')){
+//     toggleModalWindow(e.target.closest('.modal'))
+//   }
+
+// }
+
+// function escKey(e) {
+//   const escKeyNum = 27;
+//   if (e.keyCode === escKeyNum) {
+//     toggleModalWindow(document.querySelector(".modal"));
+//   }
+//   e.target.removeEventListener("keyup", escKey);
+// }
+
+// const closingModals = () => {
+//   const modals = Array.from(document.querySelectorAll(".modal"));
+//   modals.forEach((modalElem) => {
+//     modalElem.addEventListener("click", formClose);
+//   });
+//   modals.forEach(() => {
+//     document.addEventListener("keyup", escKey);
+//   });
+// };
+
+// closingModals();
 
 ///different function to close the modal on esc and clicking outside
-function closeOut(evt) {
-  toggleModalWindow(evt.target.closest(".modal"));
-  evt.target.removeEventListener("click", closeOut);
-}
+// function closeOut(evt) {
+//   toggleModalWindow(evt.target.closest(".modal"));
+//   evt.target.removeEventListener("click", closeOut);
+// }
 
-function escKey(e) {
-  const escKeyNum = 27;
-  if (e.keyCode === escKeyNum) {
-    toggleModalWindow(document.querySelector(".modal_active"));
-  }
-  e.target.removeEventListener("keyup", escKey);
-}
+// function escKey(e) {
+//   const escKeyNum = 27;
+//   if (e.keyCode === escKeyNum) {
+//     toggleModalWindow(document.querySelector(".modal_active"));
+//   }
+//   e.target.removeEventListener("keyup", escKey);
+// }
 
-const closingModals = () => {
-  const modals = Array.from(document.querySelectorAll(".modal"));
+// const closingModals = () => {
+//   const modals = Array.from(document.querySelectorAll(".modal"));
   
-  modals.forEach((modalElem) => {
-    modalElem.addEventListener("click", closeOut);
-  });
+//   modals.forEach((modalElem) => {
+//     modalElem.addEventListener("click", closeOut);
+//   });
    
+// console.log(modals)
 
-  modals.forEach(() => {
-    document.addEventListener("keyup", escKey);
-  });
-};
+//   modals.forEach(() => {
+//     document.addEventListener("keyup", escKey);
+//   });
+// };
 
-closingModals();
+// closingModals();
 
 
 
