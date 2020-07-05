@@ -152,7 +152,7 @@ const initialCards = [
   }
 ];
 
-
+//Before refactorign
 //image and caption
 const image = document.querySelector('.modal__figure-image');
 const caption = document.querySelector('.modal__figure-caption');
