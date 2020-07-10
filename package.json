@@ -1,0 +1,31 @@
+{
+  "name": "web_project_4",
+  "version": "1.0.0",
+  "description": "* This project is using javascript that updates the information about the user such as the profession and name",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enyelsequeira/web_project_4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enyelsequeira/web_project_4/issues"
+  },
+  "homepage": "https://github.com/enyelsequeira/web_project_4#readme"
+}
