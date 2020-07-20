@@ -1,5 +1,7 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+import Section from './Section.js';
+import { cardListSelector, initialCards } from '../utils/constants.js';
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -21,32 +23,18 @@ const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
-const initialCards = [
+const cardList = new Section(
   {
-    name: 'Yosemite Valley',
-    link: 'https://code.s3.yandex.net/web-code/yosemite.jpg',
+    data: initialCards,
+    renderer: item => {
+      const card = new Card(item, '.elements__template');
+      const cardElement = card.generateCard();
+      cardList.setItem(cardElement);
+    },
   },
-  {
-    name: 'Lake Louise',
-    link: 'https://code.s3.yandex.net/web-code/lake-louise.jpg',
-  },
-  {
-    name: 'Bald Mountains',
-    link: 'https://code.s3.yandex.net/web-code/bald-mountains.jpg',
-  },
-  {
-    name: 'Latemar',
-    link: 'https://code.s3.yandex.net/web-code/latemar.jpg',
-  },
-  {
-    name: 'Vanois National Park',
-    link: 'https://code.s3.yandex.net/web-code/vanois.jpg',
-  },
-  {
-    name: 'Lago di Braies',
-    link: 'https://code.s3.yandex.net/web-code/lago.jpg',
-  },
-];
+  cardListSelector
+);
+cardList.renderItems();
 
 // function to toggle the modals
 function toggleModalWindow(modal) {
@@ -108,19 +96,10 @@ imageClose.addEventListener('click', () => {
   toggleModalWindow(modalImageView);
 });
 
-const ul = document.querySelector('.elements__list');
 // this render the cards
 const cardTemplateselector = '.elements__template';
 
-const renderCard = data => {
-  const card = new Card(data, cardTemplateselector);
-
-  ul.prepend(card.generateCard());
-};
 // for each data we do this to render cards
-initialCards.forEach(data => {
-  renderCard(data);
-});
 
 const placeTitle = document.querySelector('.modal__form-title');
 const placeLink = document.querySelector('.modal__form-link');
