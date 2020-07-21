@@ -31,8 +31,9 @@ const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
-const handleCardClick = card => {
-  modalWithImage.open(card);
+const handleCardClick = element => {
+  console.log(element);
+  modalWithImage.open(element);
 };
 // adding initial card to the DOM
 const cardList = new Section(
