@@ -27,11 +27,13 @@ const toggleAlt = () => {
 toggleAlt();
 
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._cardElement = cardSelector;
     // getting the entire element below
     this._title = data.name;
     this._image = data.link;
+
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -45,7 +47,11 @@ class Card {
   _setEventListeners() {
     const likeButton = this._card.querySelector('.elements__image-heart');
     const deleteButton = this._card.querySelector('.elements__trash');
-    const cardImage = this._card.querySelector('.elements__image');
+    this._card
+      .querySelector('.elements__image')
+      .addEventListener('click', () => {
+        this._handleCardClick();
+      });
 
     // console.log(cardImage);
     likeButton.addEventListener('click', () => {
@@ -55,13 +61,13 @@ class Card {
       deleteButton.parentElement.remove();
     });
 
-    cardImage.addEventListener('click', () => {
-      const cardCaption = document.querySelector('.modal__figure-caption');
-      const cardImg = document.querySelector('.modal__figure-image');
-      cardCaption.textContent = this._title;
-      cardImg.src = this._image;
-      toggleModalWindow(modalImageView);
-    });
+    // cardImage.addEventListener('click', () => {
+    //   const cardCaption = document.querySelector('.modal__figure-caption');
+    //   const cardImg = document.querySelector('.modal__figure-image');
+    //   cardCaption.textContent = this._title;
+    //   cardImg.src = this._image;
+    //   toggleModalWindow(modalImageView);
+    // });
   }
 
   generateCard() {

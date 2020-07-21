@@ -2,6 +2,8 @@ import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import Section from './Section.js';
 import { cardListSelector, initialCards } from '../utils/constants.js';
+import PopUpWithImage from './PopupWithImage.js';
+import Popup from './Popup.js';
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -11,6 +13,10 @@ const defaultConfig = {
   inputErrorClass: 'modal__form-error',
   errorClass: 'modal__form-error_visible',
 };
+const modalWithImage = new PopUpWithImage('.figure');
+
+const editPopup = new Popup('.modal__edit');
+
 const modalEdit = document.querySelector('.modal');
 const modalAdd = document.querySelector('.modal__card');
 
@@ -23,11 +29,20 @@ const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
+// adding initial card to the DOM
 const cardList = new Section(
   {
     data: initialCards,
     renderer: item => {
-      const card = new Card(item, '.elements__template');
+      const card = new Card(
+        {
+          item,
+          handleCardClick: () => {
+            modalWithImage.open(item);
+          },
+        },
+        '.elements__template'
+      );
       const cardElement = card.generateCard();
       cardList.setItem(cardElement);
     },
