@@ -50,7 +50,7 @@ class Card {
     this._card
       .querySelector('.elements__image')
       .addEventListener('click', () => {
-        this._handleCardClick();
+        this._handleCardClick(this.generateCard);
       });
 
     // console.log(cardImage);

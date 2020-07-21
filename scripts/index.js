@@ -30,7 +30,7 @@ editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
 const handleCardClick = card => {
-  PopUpWithImage.open(card);
+  modalWithImage.open(card);
 };
 // adding initial card to the DOM
 const cardList = new Section(
@@ -49,8 +49,7 @@ cardList.renderItems();
 
 const newPlaceSubmit = ({ name, link }) => {
   const place = new Card(name, link, '.elements__template', handleCardClick);
-  const newPlace = place.generateCard();
-  cardList.setItem(newPlace);
+  cardList.addItem(place.generateCard());
 };
 
 // function to toggle the modals
@@ -122,4 +121,4 @@ function newCard(e) {
   renderCard({ name: placeTitle.value, link: placeLink.value });
   toggleModalWindow(modalAdd);
 }
-modalCardBtn.addEventListener('click', newCard);
+modalCardBtn.addEventListener('click', newPlaceSubmit);
