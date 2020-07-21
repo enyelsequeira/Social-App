@@ -1,3 +1,4 @@
+const ESCKeyCode = 27;
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
@@ -15,8 +16,10 @@ export default class Popup {
     document.removeEventListener('keyup', this._handleEscClose);
   }
 
-  _handleEscClose() {
-    console.log('you clicked me');
+  _handleEscClose(e) {
+    if (e.which === ESCKeyCode) {
+      this.close();
+    }
   }
 
   setEventListeners() {

@@ -13,9 +13,11 @@ const defaultConfig = {
   inputErrorClass: 'modal__form-error',
   errorClass: 'modal__form-error_visible',
 };
+// creating a image modal?
 const modalWithImage = new PopUpWithImage('.figure');
 
-const editPopup = new Popup('.modal__edit');
+const editPopup = new Popup('.modal');
+const addCardPopup = new Popup('.modal__card');
 
 const modalEdit = document.querySelector('.modal');
 const modalAdd = document.querySelector('.modal__card');

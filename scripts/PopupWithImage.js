@@ -15,6 +15,6 @@ export default class PopUpWithImage extends Popup {
     this._popupElement.querySelector(
       '.modal__figure-caption'
     ).textContent = caption;
+    super.open();
   }
 }
-const modalWithImage = new PopUpWithImage('.figure');
