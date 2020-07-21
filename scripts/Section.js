@@ -13,6 +13,10 @@ export default class Section {
     this._container.innerHTML = '';
   }
 
+  addItem(element) {
+    this._container.append(element);
+  }
+
   renderItems() {
     this.clear();
     this._renderedItems.forEach(item => {

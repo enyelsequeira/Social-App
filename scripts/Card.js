@@ -27,11 +27,11 @@ const toggleAlt = () => {
 toggleAlt();
 
 class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(name, link, cardSelector, handleCardClick) {
     this._cardElement = cardSelector;
     // getting the entire element below
-    this._title = data.name;
-    this._image = data.link;
+    this._title = name;
+    this._image = link;
 
     this._handleCardClick = handleCardClick;
   }

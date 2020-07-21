@@ -29,20 +29,16 @@ const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
+const handleCardClick = card => {
+  PopUpWithImage.open(card);
+};
 // adding initial card to the DOM
 const cardList = new Section(
   {
     data: initialCards,
-    renderer: item => {
-      const card = new Card(
-        {
-          item,
-          handleCardClick: () => {
-            modalWithImage.open(item);
-          },
-        },
-        '.elements__template'
-      );
+    renderer: ({ name, link }) => {
+      // console.log(data);
+      const card = new Card(name, link, '.elements__template', handleCardClick);
       const cardElement = card.generateCard();
       cardList.setItem(cardElement);
     },
@@ -50,6 +46,12 @@ const cardList = new Section(
   cardListSelector
 );
 cardList.renderItems();
+
+const newPlaceSubmit = ({ name, link }) => {
+  const place = new Card(name, link, '.elements__template', handleCardClick);
+  const newPlace = place.generateCard();
+  cardList.setItem(newPlace);
+};
 
 // function to toggle the modals
 function toggleModalWindow(modal) {
@@ -110,9 +112,6 @@ const modalImageView = document.querySelector('.figure');
 imageClose.addEventListener('click', () => {
   toggleModalWindow(modalImageView);
 });
-
-// this render the cards
-const cardTemplateselector = '.elements__template';
 
 // for each data we do this to render cards
 
