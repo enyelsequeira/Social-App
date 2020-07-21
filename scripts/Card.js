@@ -34,6 +34,7 @@ class Card {
     this._image = link;
 
     this._handleCardClick = handleCardClick;
+    console.log(handleCardClick);
   }
 
   _getTemplate() {
@@ -50,7 +51,7 @@ class Card {
     this._card
       .querySelector('.elements__image')
       .addEventListener('click', () => {
-        this._handleCardClick(this.generateCard);
+        this._handleCardClick();
       });
 
     // console.log(cardImage);
