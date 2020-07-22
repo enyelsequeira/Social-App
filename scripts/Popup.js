@@ -7,12 +7,12 @@ export default class Popup {
   }
 
   open() {
-    this._popupElement.classList.toggle('.modal_active');
+    this._popupElement.classList.toggle('modal_active');
     document.addEventListener('keyup', this._handleEscClose);
   }
 
   close() {
-    this._popupElement.classList.toggle('.modal_active');
+    this._popupElement.classList.toggle('modal_active');
     document.removeEventListener('keyup', this._handleEscClose);
   }
 

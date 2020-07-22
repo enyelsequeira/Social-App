@@ -3,6 +3,7 @@ import Card from './Card.js';
 import Section from './Section.js';
 import { cardListSelector, initialCards } from '../utils/constants.js';
 import PopUpWithImage from './PopupWithImage.js';
+import PopupwithForm from './PopupWithForm.js';
 import Popup from './Popup.js';
 
 const defaultConfig = {
@@ -15,6 +16,19 @@ const defaultConfig = {
 };
 // creating a image modal?
 const modalWithImage = new PopUpWithImage('.figure');
+// console.log(modalWithImage);
+
+// 1. Click on the pencil
+// 2. Open modal
+// 3. Click on the save button or the close
+// 4. Close modal
+
+const editForm = new PopupwithForm('.modal__edit', e => {
+  e.preventDefault();
+  name.textContent = nameInput.value;
+  profession.textContent = professionInput.value;
+  // toggleModalWindow(modalEdit);
+});
 
 const editPopup = new Popup('.modal');
 const addCardPopup = new Popup('.modal__card');
@@ -31,9 +45,9 @@ const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
-const handleCardClick = element => {
-  console.log(element);
-  modalWithImage.open(element);
+const handleCardClick = data => {
+  console.log(data);
+  modalWithImage.open(data);
 };
 // adding initial card to the DOM
 const cardList = new Section(
@@ -77,21 +91,17 @@ const addBtn = document.querySelector('.profile__button-add');
 const modalCardBtn = document.querySelector('.modal__form-create');
 
 // values that need changing first modal
-const nameInput = document.querySelector('.modal__form-name');
-const professionInput = document.querySelector('.modal__form-profession');
-const name = document.querySelector('.profile__name');
-const profession = document.querySelector('.profile__profession');
 
 // functions for the submission to prevent the default
-const formSubmitHandler = e => {
-  e.preventDefault();
-  name.textContent = nameInput.value;
-  profession.textContent = professionInput.value;
-  toggleModalWindow(modalEdit);
-};
+// const formSubmitHandler = e => {
+//   e.preventDefault();
+//   name.textContent = nameInput.value;
+//   profession.textContent = professionInput.value;
+//   toggleModalWindow(modalEdit);
+// };
 
 // first form
-form.addEventListener('submit', formSubmitHandler);
+// form.addEventListener('submit', formSubmitHandler);
 openModal.addEventListener('click', () => {
   toggleModalWindow(modalEdit);
 });
