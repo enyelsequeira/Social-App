@@ -1,10 +1,18 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import Section from './Section.js';
-import { cardListSelector, initialCards } from '../utils/constants.js';
+import {
+  cardListSelector,
+  initialCards,
+  editProfile,
+  nameInput,
+  professionInput,
+  editBtn,
+} from '../utils/constants.js';
 import PopUpWithImage from './PopupWithImage.js';
 import PopupwithForm from './PopupWithForm.js';
 import Popup from './Popup.js';
+import UserInfo from './UserInfo.js';
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -18,20 +26,8 @@ const defaultConfig = {
 const modalWithImage = new PopUpWithImage('.figure');
 // console.log(modalWithImage);
 
-// 1. Click on the pencil
-// 2. Open modal
-// 3. Click on the save button or the close
-// 4. Close modal
-
-const editForm = new PopupwithForm('.modal__edit', e => {
-  e.preventDefault();
-  name.textContent = nameInput.value;
-  profession.textContent = professionInput.value;
-  // toggleModalWindow(modalEdit);
-});
-
-const editPopup = new Popup('.modal');
-const addCardPopup = new Popup('.modal__card');
+// const editPopup = new Popup('.modal');
+// const addCardPopup = new Popup('.modal__card');
 
 const modalEdit = document.querySelector('.modal');
 const modalAdd = document.querySelector('.modal__card');
@@ -46,7 +42,6 @@ editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
 const handleCardClick = data => {
-  console.log(data);
   modalWithImage.open(data);
 };
 // adding initial card to the DOM
@@ -64,74 +59,13 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-const newPlaceSubmit = ({ name, link }) => {
-  const place = new Card(name, link, '.elements__template', handleCardClick);
-  cardList.addItem(place.generateCard());
-};
-
-// function to toggle the modals
-function toggleModalWindow(modal) {
-  modal.classList.toggle('modal_active');
-}
-// button to open modal information
-const openModal = document.querySelector('.profile__info-btn');
-// close modal infomation
-const closeBtn = document.querySelector('.modal__close');
-// close second modal Card
-const closeAddCard = document.querySelector('.modal__card-close');
-
-// modal selector
-
-// selecting form
-const form = document.querySelector('.modal__form');
-// Open second modal
-const addBtn = document.querySelector('.profile__button-add');
-// selecting second modal
-// selecting modal to add cards
-const modalCardBtn = document.querySelector('.modal__form-create');
-
-// values that need changing first modal
-
-// functions for the submission to prevent the default
-// const formSubmitHandler = e => {
-//   e.preventDefault();
-//   name.textContent = nameInput.value;
-//   profession.textContent = professionInput.value;
-//   toggleModalWindow(modalEdit);
-// };
-
-// first form
-// form.addEventListener('submit', formSubmitHandler);
-openModal.addEventListener('click', () => {
-  toggleModalWindow(modalEdit);
-});
-closeBtn.addEventListener('click', () => {
-  toggleModalWindow(modalEdit);
+const profileForm = new PopupwithForm({
+  popupSelector: editProfile,
+  handleSubmitForm: () => {
+    const profileInfo = new UserInfo(nameInput.value, professionInput.value);
+    profileInfo.setUserInfo();
+    profileForm.close();
+  },
 });
 
-// add card button modal
-addBtn.addEventListener('click', () => {
-  toggleModalWindow(modalAdd);
-});
-closeAddCard.addEventListener('click', () => {
-  toggleModalWindow(modalAdd);
-});
-
-// image modal close
-const imageClose = document.querySelector('.modal__figure-exit');
-// modalImage
-const modalImageView = document.querySelector('.figure');
-imageClose.addEventListener('click', () => {
-  toggleModalWindow(modalImageView);
-});
-
-// for each data we do this to render cards
-
-const placeTitle = document.querySelector('.modal__form-title');
-const placeLink = document.querySelector('.modal__form-link');
-function newCard(e) {
-  e.preventDefault();
-  renderCard({ name: placeTitle.value, link: placeLink.value });
-  toggleModalWindow(modalAdd);
-}
-modalCardBtn.addEventListener('click', newPlaceSubmit);
+editBtn.addEventListener('click', profileForm.open());
