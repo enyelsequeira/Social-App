@@ -60,7 +60,7 @@ const cardList = new Section(
 cardList.renderItems();
 
 const profileForm = new PopupwithForm({
-  popupSelector: editProfile,
+  popupSelector: '.modal__edit',
   handleSubmitForm: () => {
     const profileInfo = new UserInfo(nameInput.value, professionInput.value);
     profileInfo.setUserInfo();

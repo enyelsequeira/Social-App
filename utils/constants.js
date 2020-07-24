@@ -29,6 +29,7 @@ export const initialCards = [
 export const cardListSelector = '.elements__list';
 
 export const editProfile = document.querySelector('.modal__edit');
+// console.log(editProfile);
 
 // input for the name and job
 
