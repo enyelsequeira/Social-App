@@ -8,11 +8,15 @@ import {
   nameInput,
   professionInput,
   editBtn,
+  imageInput,
+  titleInput,
+  addBtn,
 } from '../utils/constants.js';
 import PopUpWithImage from './PopupWithImage.js';
 import PopupwithForm from './PopupWithForm.js';
 import Popup from './Popup.js';
 import UserInfo from './UserInfo.js';
+import PopupWithForm from './PopupWithForm.js';
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -25,9 +29,6 @@ const defaultConfig = {
 // creating a image modal?
 const modalWithImage = new PopUpWithImage('.figure');
 // console.log(modalWithImage);
-
-// const editPopup = new Popup('.modal');
-// const addCardPopup = new Popup('.modal__card');
 
 const modalEdit = document.querySelector('.modal');
 const modalAdd = document.querySelector('.modal__card');
@@ -59,6 +60,13 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
+// const addNewPlaceSubmit = ({ name, link }) => {
+//   const newPlace = new Card(name, link, 'elements__template', handleCardClick);
+//   cardList.addItem(newPlace.generateCard());
+// };
+
+// const galleryForm = new PopupWithForm('.modal__card', addNewPlaceSubmit);
+
 const profileForm = new PopupwithForm({
   popupSelector: '.modal__edit',
   handleSubmitForm: () => {
@@ -68,4 +76,7 @@ const profileForm = new PopupwithForm({
   },
 });
 
-editBtn.addEventListener('click', profileForm.open());
+addBtn.addEventListener('click', () => {
+  console.log('i was clicked');
+});
+editBtn.addEventListener('click', () => profileForm.open());

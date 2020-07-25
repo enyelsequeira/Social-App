@@ -39,3 +39,10 @@ export const professionInput = document.querySelector(
 );
 
 export const editBtn = document.querySelector('.profile__info-btn');
+
+// image form
+export const imageInput = document.querySelector('.modal__form-link');
+export const titleInput = document.querySelector('.modal__form-title');
+
+// add button
+export const addBtn = document.querySelector('.profile__button-add');

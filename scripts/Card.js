@@ -1,31 +1,3 @@
-function toggleModalWindow(modal) {
-  modal.classList.toggle('modal_active');
-}
-const modalImageView = document.querySelector('.figure');
-const handlingClose = e => {
-  toggleModalWindow(e.target);
-};
-
-const escKey = e => {
-  const key = 27;
-  if (e.keyCode === key) {
-    toggleModalWindow(document.querySelector('.modal_active'));
-    e.target.removeEventListener('keydown', escKey);
-  }
-};
-const toggleAlt = () => {
-  const modalList = Array.from(document.querySelectorAll('.modal'));
-  modalList.forEach(modal => {
-    modal.addEventListener('click', handlingClose);
-  });
-
-  modalList.forEach(() => {
-    document.addEventListener('keydown', escKey);
-  });
-};
-
-toggleAlt();
-
 class Card {
   constructor(name, link, cardSelector, handleCardClick) {
     this._cardElement = cardSelector;
@@ -42,6 +14,20 @@ class Card {
       .content.querySelector('.elements__item')
       .cloneNode(true);
     return cardElement;
+  }
+
+  generateCard() {
+    const element = this._getTemplate();
+
+    this._card = element;
+    this._card.querySelector(
+      '.elements__image'
+    ).style.backgroundImage = `url(${this._image})`;
+    this._card.querySelector('.elements__title').textContent = this._title;
+    this._card.querySelector('.elements__image').alt = this._title;
+    this._setEventListeners();
+
+    return this._card;
   }
 
   _setEventListeners() {
@@ -68,20 +54,6 @@ class Card {
     //   cardImg.src = this._image;
     //   toggleModalWindow(modalImageView);
     // });
-  }
-
-  generateCard() {
-    const element = this._getTemplate();
-
-    this._card = element;
-    this._card.querySelector(
-      '.elements__image'
-    ).style.backgroundImage = `url(${this._image})`;
-    this._card.querySelector('.elements__title').textContent = this._title;
-    this._card.querySelector('.elements__image').alt = this._title;
-    this._setEventListeners();
-
-    return this._card;
   }
 }
 export default Card;

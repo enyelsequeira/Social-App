@@ -4,10 +4,11 @@ export default class Popup {
     this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
     // console.log(this._popupElement);
+    this.setEventListeners();
   }
 
   open() {
-    this.setEventListeners();
+    // this.setEventListeners();
     this._popupElement.classList.toggle('modal_active');
     document.addEventListener('keyup', this._handleEscClose);
   }
@@ -25,10 +26,11 @@ export default class Popup {
 
   setEventListeners() {
     // console.log(this._popupElement.querySelector('.modal__close'));
-    this._popupElement
-      .querySelector('.modal__close')
-      .addEventListener('click', e => {
+    this._popupElement.querySelector('.modal__close').addEventListener(
+      'click',
+      function (e) {
         this.close();
-      });
+      }.bind(this)
+    );
   }
 }
