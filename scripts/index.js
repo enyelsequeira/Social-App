@@ -72,11 +72,32 @@ const profileForm = new PopupwithForm({
   handleSubmitForm: () => {
     const profileInfo = new UserInfo(nameInput.value, professionInput.value);
     profileInfo.setUserInfo();
+    console.log(profileInfo);
     profileForm.close();
   },
 });
 
+const imageForm = new PopupWithForm({
+  popupSelector: '.modal__card',
+  handleSubmitForm: () => {
+    const newCard = new Card(
+      {
+        data: { name: titleInput.value, link: imageInput.value },
+        handleCardClick: data => {
+          const imagePopup = new PopUpWithImage('.figure');
+          imagePopup.open({ data });
+        },
+      },
+      '.elements__template'
+    );
+    cardList.addItem(newCard.generateCard());
+    addCardValidation.enableValidation();
+    imageForm.close();
+  },
+});
+// imageForm.setEventListeners();
+
 addBtn.addEventListener('click', () => {
-  console.log('i was clicked');
+  imageForm.open();
 });
 editBtn.addEventListener('click', () => profileForm.open());
