@@ -1,6 +1,7 @@
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
-import Section from './Section.js';
+import './pages/index.css';
+import FormValidator from './scripts/FormValidator.js';
+import Card from './scripts/Card.js';
+import Section from './scripts/Section.js';
 import {
   cardListSelector,
   initialCards,
@@ -11,12 +12,12 @@ import {
   imageInput,
   titleInput,
   addBtn,
-} from '../utils/constants.js';
-import PopUpWithImage from './PopupWithImage.js';
-import PopupwithForm from './PopupWithForm.js';
-import Popup from './Popup.js';
-import UserInfo from './UserInfo.js';
-import PopupWithForm from './PopupWithForm.js';
+} from './utils/constants.js';
+import PopUpWithImage from './scripts/PopupWithImage.js';
+import PopupwithForm from './scripts/PopupWithForm.js';
+import Popup from './scripts/Popup.js';
+import UserInfo from './scripts/UserInfo.js';
+import PopupWithForm from './scripts/PopupWithForm.js';
 
 const defaultConfig = {
   // formSelector: '.modal__form',
