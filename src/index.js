@@ -1,11 +1,9 @@
-import './pages/index.css';
 import FormValidator from './scripts/FormValidator.js';
 import Card from './scripts/Card.js';
 import Section from './scripts/Section.js';
 import {
   cardListSelector,
   initialCards,
-  editProfile,
   nameInput,
   professionInput,
   editBtn,
@@ -15,9 +13,10 @@ import {
 } from './utils/constants.js';
 import PopUpWithImage from './scripts/PopupWithImage.js';
 import PopupwithForm from './scripts/PopupWithForm.js';
-import Popup from './scripts/Popup.js';
 import UserInfo from './scripts/UserInfo.js';
 import PopupWithForm from './scripts/PopupWithForm.js';
+
+import './pages/index.css';
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -61,13 +60,6 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-// const addNewPlaceSubmit = ({ name, link }) => {
-//   const newPlace = new Card(name, link, 'elements__template', handleCardClick);
-//   cardList.addItem(newPlace.generateCard());
-// };
-
-// const galleryForm = new PopupWithForm('.modal__card', addNewPlaceSubmit);
-
 const profileForm = new PopupwithForm({
   popupSelector: '.modal__edit',
   handleSubmitForm: () => {
@@ -84,7 +76,9 @@ const imageForm = new PopupWithForm({
     const newCard = new Card(
       {
         data: { name: titleInput.value, link: imageInput.value },
+
         handleCardClick: data => {
+          console.log(data);
           const imagePopup = new PopUpWithImage('.figure');
           imagePopup.open({ data });
         },
@@ -94,11 +88,14 @@ const imageForm = new PopupWithForm({
     cardList.addItem(newCard.generateCard());
     addCardValidation.enableValidation();
     imageForm.close();
+    console.log(1);
   },
 });
 // imageForm.setEventListeners();
 
-addBtn.addEventListener('click', () => {
-  imageForm.open();
-});
+// addBtn.addEventListener('click', () =>
+//   imageForm.open();
+// );
 editBtn.addEventListener('click', () => profileForm.open());
+addBtn.addEventListener('click', () => imageForm.open());
+addBtn.addEventListener('click', () => console.log('i was clicked'));

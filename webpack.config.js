@@ -13,33 +13,27 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: '/node_modules/',
+        exclude: '/node-modules/',
       },
       {
-        test: /\.css$/,
-        loader: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-            },
-          },
-          'postcss-loader',
-        ],
+        test: /\.(png|svg|jpg|gif|woff|woff2)$/,
+        loader: 'file-loader',
       },
       {
         test: /\.html$/,
         loader: 'html-loader',
       },
       {
-        test: /\.(png|svg|jpg|gif|woff2|woff)$/,
-        loader: 'file-loader',
+        test: /\.css$/,
+        loader: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+        ],
       },
     ],
   },
   plugins: [
-    // set up plugin
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),

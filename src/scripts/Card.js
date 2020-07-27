@@ -4,6 +4,7 @@ class Card {
     // getting the entire element below
     this._title = name;
     this._image = link;
+    // console.log(this._title);
 
     this._handleCardClick = handleCardClick;
   }

@@ -1,6 +1,3 @@
-// postcss.config.js
-/* eslint-disable import/no-extraneous-dependencies */
-
 // connect plugins to the file
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
