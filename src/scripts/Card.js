@@ -17,9 +17,9 @@ class Card {
     return cardElement;
   }
 
-  getName() {
-    return this._title;
-  }
+  // getName() {
+  //   return this._title;
+  // }
 
   generateCard() {
     const element = this._getTemplate();

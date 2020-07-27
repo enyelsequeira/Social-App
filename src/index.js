@@ -68,28 +68,24 @@ const profileForm = new PopupwithForm({
     profileForm.close();
   },
 });
+const handleNewPlaceSubmit = () => {
+  const inputName = document.querySelector('#card-title').value;
+  const inputValue = document.querySelector('#card-url').value;
+  const place = new Card(
+    inputName,
+    inputValue,
+    '.elements__template',
+    handleCardClick
+  );
+  const newCard = place.generateCard();
+  cardList.addItem(newCard);
+};
 const imageForm = new PopupWithForm({
   popupSelector: '.modal__card',
   handleSubmitForm: () => {
-    const newCard = new Card(
-      {
-        data: { name: titleInput.value, link: imageInput.value },
-
-        handleCardClick: data => {
-          console.log(data);
-          const imagePopup = new PopUpWithImage('.figure');
-          imagePopup.open({ data });
-        },
-      },
-      '.elements__template'
-    );
-    cardList.addItem(newCard.generateCard());
-    imageForm.close();
-    console.log(1);
+    handleNewPlaceSubmit();
   },
 });
-// imageForm.setEventListeners();
-
 // addBtn.addEventListener('click', () =>
 //   imageForm.open();
 // );
@@ -109,3 +105,19 @@ addBtn.addEventListener('click', () => console.log('i was clicked'));
 // window.onload = () => {
 //   console.log(newCard.getName());
 // };
+
+// const newCard = new Card(
+//   {
+//     data: { name: titleInput.value, link: imageInput.value },
+
+//     handleCardClick: data => {
+//       console.log(data);
+//       const imagePopup = new PopUpWithImage('.figure');
+//       imagePopup.open({ data });
+//     },
+//   },
+//   '.elements__template'
+// );
+// cardList.addItem(newCard.generateCard());
+// imageForm.close();
+// console.log(1);
