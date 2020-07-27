@@ -13,9 +13,6 @@ class UserInfo {
   setUserInfo() {
     document.querySelector('.profile__name').textContent = this._name;
     document.querySelector('.profile__profession').textContent = this._job;
-    console.log(
-      (document.querySelector('.modal__form-name').textContent = this._name)
-    );
   }
 }
 

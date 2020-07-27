@@ -91,7 +91,6 @@ const imageForm = new PopupWithForm({
 // );
 editBtn.addEventListener('click', () => profileForm.open());
 addBtn.addEventListener('click', () => imageForm.open());
-addBtn.addEventListener('click', () => console.log('i was clicked'));
 
 // const someCard = new Card(
 //   'somename',
