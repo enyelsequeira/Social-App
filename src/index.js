@@ -65,11 +65,9 @@ const profileForm = new PopupwithForm({
   handleSubmitForm: () => {
     const profileInfo = new UserInfo(nameInput.value, professionInput.value);
     profileInfo.setUserInfo();
-    console.log(profileInfo);
     profileForm.close();
   },
 });
-
 const imageForm = new PopupWithForm({
   popupSelector: '.modal__card',
   handleSubmitForm: () => {
@@ -86,7 +84,6 @@ const imageForm = new PopupWithForm({
       '.elements__template'
     );
     cardList.addItem(newCard.generateCard());
-    addCardValidation.enableValidation();
     imageForm.close();
     console.log(1);
   },
@@ -99,3 +96,16 @@ const imageForm = new PopupWithForm({
 editBtn.addEventListener('click', () => profileForm.open());
 addBtn.addEventListener('click', () => imageForm.open());
 addBtn.addEventListener('click', () => console.log('i was clicked'));
+
+// const someCard = new Card(
+//   'somename',
+//   'http://somelinke',
+//   elTemplate,
+//   handleCardClick
+// );
+
+// // console.log(someCard.getName());
+
+// window.onload = () => {
+//   console.log(newCard.getName());
+// };
