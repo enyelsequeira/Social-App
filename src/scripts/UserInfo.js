@@ -1,18 +1,26 @@
+import {
+  formName,
+  formProfession,
+  nameUpdate,
+  professionUpdate,
+} from '../utils/constants';
+
 class UserInfo {
   constructor(userName, userProfession) {
     this._name = userName;
     this._job = userProfession;
+    console.log(userName);
     // console.log(this._name);
   }
 
   getUserInfo() {
-    this._name = document.querySelector('.modal__form-name').textContent;
-    this._job = document.querySelector('.modal__form-profession').textContent;
+    this._name = formName;
+    this._job = formProfession;
   }
 
   setUserInfo() {
-    document.querySelector('.profile__name').textContent = this._name;
-    document.querySelector('.profile__profession').textContent = this._job;
+    nameUpdate.textContent = this._name;
+    professionUpdate.textContent = this._job;
   }
 }
 

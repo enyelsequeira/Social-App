@@ -46,3 +46,17 @@ export const titleInput = document.querySelector('.modal__form-title');
 
 // add button
 export const addBtn = document.querySelector('.profile__button-add');
+
+// image
+
+export const cardTitle = document.querySelector('#card-title');
+export const cardLink = document.querySelector('#card-url');
+
+// modal form
+
+export const formName = document.querySelector('.modal__form-name');
+export const formProfession = document.querySelector('.modal__form-profession');
+
+// updating variable
+export const nameUpdate = document.querySelector('.profile__name');
+export const professionUpdate = document.querySelector('.profile__profession');

@@ -10,13 +10,14 @@ import {
   imageInput,
   titleInput,
   addBtn,
+  cardTitle,
+  cardLink,
 } from './utils/constants.js';
 import PopUpWithImage from './scripts/PopupWithImage.js';
-import PopupwithForm from './scripts/PopupWithForm.js';
 import UserInfo from './scripts/UserInfo.js';
-import PopupWithForm from './scripts/PopupWithForm.js';
 
 import './pages/index.css';
+import PopupWithForm from './scripts/PopupWithForm.js';
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -60,7 +61,7 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-const profileForm = new PopupwithForm({
+const profileForm = new PopupWithForm({
   popupSelector: '.modal__edit',
   handleSubmitForm: () => {
     const profileInfo = new UserInfo(nameInput.value, professionInput.value);
@@ -69,8 +70,8 @@ const profileForm = new PopupwithForm({
   },
 });
 const handleNewPlaceSubmit = () => {
-  const inputName = document.querySelector('#card-title').value;
-  const inputValue = document.querySelector('#card-url').value;
+  const inputName = cardTitle.value;
+  const inputValue = cardLink.value;
   const place = new Card(
     inputName,
     inputValue,
@@ -86,37 +87,6 @@ const imageForm = new PopupWithForm({
     handleNewPlaceSubmit();
   },
 });
-// addBtn.addEventListener('click', () =>
-//   imageForm.open();
-// );
+
 editBtn.addEventListener('click', () => profileForm.open());
 addBtn.addEventListener('click', () => imageForm.open());
-
-// const someCard = new Card(
-//   'somename',
-//   'http://somelinke',
-//   elTemplate,
-//   handleCardClick
-// );
-
-// // console.log(someCard.getName());
-
-// window.onload = () => {
-//   console.log(newCard.getName());
-// };
-
-// const newCard = new Card(
-//   {
-//     data: { name: titleInput.value, link: imageInput.value },
-
-//     handleCardClick: data => {
-//       console.log(data);
-//       const imagePopup = new PopUpWithImage('.figure');
-//       imagePopup.open({ data });
-//     },
-//   },
-//   '.elements__template'
-// );
-// cardList.addItem(newCard.generateCard());
-// imageForm.close();
-// console.log(1);
