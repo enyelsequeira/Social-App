@@ -61,11 +61,14 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
+const handlingProfileEdit = () => {
+  const profileInfo = new UserInfo(nameInput.value, professionInput.value);
+  profileInfo.setUserInfo();
+};
 const profileForm = new PopupWithForm({
   popupSelector: '.modal__edit',
   handleSubmitForm: () => {
-    const profileInfo = new UserInfo(nameInput.value, professionInput.value);
-    profileInfo.setUserInfo();
+    handlingProfileEdit();
     profileForm.close();
   },
 });
