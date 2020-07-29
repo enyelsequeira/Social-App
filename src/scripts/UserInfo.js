@@ -9,7 +9,7 @@ class UserInfo {
   constructor(userName, userProfession) {
     this._name = userName;
     this._job = userProfession;
-    console.log(userName);
+    // console.log(userName);
     // console.log(this._name);
   }
 

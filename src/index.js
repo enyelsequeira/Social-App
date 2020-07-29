@@ -7,8 +7,6 @@ import {
   nameInput,
   professionInput,
   editBtn,
-  imageInput,
-  titleInput,
   addBtn,
   cardTitle,
   cardLink,
