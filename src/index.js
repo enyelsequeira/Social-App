@@ -61,8 +61,8 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
+const profileInfo = new UserInfo(nameInput, professionInput);
 const handlingProfileEdit = () => {
-  const profileInfo = new UserInfo(nameInput.value, professionInput.value);
   profileInfo.setUserInfo();
 };
 const profileForm = new PopupWithForm({

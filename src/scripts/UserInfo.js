@@ -9,6 +9,8 @@ class UserInfo {
   constructor(userName, userProfession) {
     this._name = userName;
     this._job = userProfession;
+    console.log(userName);
+    // console.log(this._name);
   }
 
   getUserInfo() {
@@ -17,8 +19,8 @@ class UserInfo {
   }
 
   setUserInfo() {
-    nameUpdate.textContent = this._name;
-    professionUpdate.textContent = this._job;
+    nameUpdate.textContent = this._name.value;
+    professionUpdate.textContent = this._job.value;
   }
 }
 
