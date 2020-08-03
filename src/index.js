@@ -16,6 +16,37 @@ import UserInfo from './scripts/UserInfo.js';
 
 import './pages/index.css';
 import PopupWithForm from './scripts/PopupWithForm.js';
+import Api from './scripts/Api.js';
+
+const api = new Api({
+  baseUrl: 'https://around.nomoreparties.co/v1/group-42',
+  headers: {
+    authorization: '9a4eb9c4-eb35-4130-9822-f1a4ffd479bc',
+    'Content-Type': 'application/json',
+  },
+});
+
+const cardList = new Section(
+  {
+    data: initialCards,
+    renderer: ({ name, link }) => {
+      // console.log(data);
+      const card = new Card(name, link, '.elements__template', handleCardClick);
+      const cardElement = card.generateCard();
+      cardList.setItem(cardElement);
+    },
+  },
+  cardListSelector
+);
+cardList.renderItems();
+// console.log(api.getCardList);
+
+api.getCardList().then(res => {
+  console.log(res, 111);
+});
+// api.getCardList().then(res => {
+//   console.log(res);
+// });
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -45,19 +76,6 @@ const handleCardClick = data => {
   modalWithImage.open(data);
 };
 // adding initial card to the DOM
-const cardList = new Section(
-  {
-    data: initialCards,
-    renderer: ({ name, link }) => {
-      // console.log(data);
-      const card = new Card(name, link, '.elements__template', handleCardClick);
-      const cardElement = card.generateCard();
-      cardList.setItem(cardElement);
-    },
-  },
-  cardListSelector
-);
-cardList.renderItems();
 
 const profileInfo = new UserInfo(nameInput, professionInput);
 const handlingProfileEdit = () => {
