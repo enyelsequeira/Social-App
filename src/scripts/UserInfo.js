@@ -9,7 +9,7 @@ class UserInfo {
   constructor(userName, userProfession) {
     this._name = userName;
     this._job = userProfession;
-    // console.log(userName);
+    // console.log(this._name);
     // console.log(this._name);
   }
 
@@ -18,9 +18,9 @@ class UserInfo {
     this._job = formProfession;
   }
 
-  setUserInfo() {
-    nameUpdate.textContent = this._name.value;
-    professionUpdate.textContent = this._job.value;
+  setUserInfo({ userName, userDescription }) {
+    nameUpdate.textContent = userName;
+    professionUpdate.textContent = userDescription;
   }
 }
 

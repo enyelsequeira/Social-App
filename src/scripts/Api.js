@@ -3,7 +3,7 @@ class Api {
     this._baseUrl = baseUrl;
     // console.log(this._baseUrl);
     this._headers = headers;
-    console.log(this._headers);
+    // console.log(this._headers);
   }
 
   // GET https://around.nomoreparties.co/v1/groupId/cards
@@ -12,23 +12,45 @@ class Api {
       headers: this._headers,
     })
       .then(res => {
-        console.log('before res', res),
-          res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
-      })
-      .then(res => {
-        console.log(2, res);
+        // console.log('before res', res),
+        return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
       })
 
       .catch(err => console.log(err));
   }
 
   // GET https://around.nomoreparties.co/v1/groupId/users/me
-  getUserInfo() {}
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    })
+      .then(res => {
+        return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
+      })
 
-  getAppInfo() {}
+      .catch(err => console.log(err));
+  }
+
+  getAppInfo() {
+    // resolve all the above promises // not needed
+  }
 
   // POST https://around.nomoreparties.co/v1/groupId/cards
-  addCard({ name, link }) {}
+  addCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
+      method: 'POST',
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    })
+      .then(res => {
+        return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
+      })
+
+      .catch(err => console.log(err));
+  }
 
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
   removeCard(cardID) {}

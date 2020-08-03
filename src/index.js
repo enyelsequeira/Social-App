@@ -19,34 +19,52 @@ import PopupWithForm from './scripts/PopupWithForm.js';
 import Api from './scripts/Api.js';
 
 const api = new Api({
-  baseUrl: 'https://around.nomoreparties.co/v1/group-42',
+  baseUrl: 'https://around.nomoreparties.co/v1/group-3',
   headers: {
     authorization: '9a4eb9c4-eb35-4130-9822-f1a4ffd479bc',
     'Content-Type': 'application/json',
   },
 });
 
-const cardList = new Section(
-  {
-    data: initialCards,
-    renderer: ({ name, link }) => {
-      // console.log(data);
-      const card = new Card(name, link, '.elements__template', handleCardClick);
-      const cardElement = card.generateCard();
-      cardList.setItem(cardElement);
-    },
-  },
-  cardListSelector
-);
-cardList.renderItems();
-// console.log(api.getCardList);
-
 api.getCardList().then(res => {
-  console.log(res, 111);
+  // console.log(res);
+  const cardList = new Section(
+    {
+      data: res,
+      renderer: ({ name, link }) => {
+        // console.log(data);
+        const card = new Card(
+          name,
+          link,
+          '.elements__template',
+          handleCardClick
+        );
+        const cardElement = card.generateCard();
+        cardList.setItem(cardElement);
+      },
+    },
+    cardListSelector
+  );
+  cardList.renderItems();
 });
-// api.getCardList().then(res => {
-//   console.log(res);
-// });
+
+const profileInfo = new UserInfo(nameInput, professionInput);
+api.getUserInfo().then(({ name, about }) => {
+  // console.log(name, about);
+  profileInfo.setUserInfo({ userName: name, userDescription: about });
+});
+
+const handlingProfileEdit = () => {
+  profileInfo.setUserInfo();
+};
+
+const profileForm = new PopupWithForm({
+  popupSelector: '.modal__edit',
+  handleSubmitForm: () => {
+    handlingProfileEdit();
+    profileForm.close();
+  },
+});
 
 const defaultConfig = {
   // formSelector: '.modal__form',
@@ -77,17 +95,6 @@ const handleCardClick = data => {
 };
 // adding initial card to the DOM
 
-const profileInfo = new UserInfo(nameInput, professionInput);
-const handlingProfileEdit = () => {
-  profileInfo.setUserInfo();
-};
-const profileForm = new PopupWithForm({
-  popupSelector: '.modal__edit',
-  handleSubmitForm: () => {
-    handlingProfileEdit();
-    profileForm.close();
-  },
-});
 const handleNewPlaceSubmit = () => {
   const inputName = cardTitle.value;
   const inputValue = cardLink.value;
