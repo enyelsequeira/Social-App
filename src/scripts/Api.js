@@ -37,6 +37,7 @@ class Api {
 
   // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ name, link }) {
+    console.log(name);
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: 'POST',
@@ -67,10 +68,3 @@ class Api {
 }
 
 export default Api;
-// const api = new Api({
-//     baseUrl: "https://around.nomoreparties.co/v1/group-42",
-//     headers: {
-//       authorization: "9a4eb9c4-eb35-4130-9822-f1a4ffd479bc",
-//       "Content-Type": "application/json"
-//     }
-//   });
