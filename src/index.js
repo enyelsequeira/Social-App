@@ -46,6 +46,29 @@ api.getCardList().then(res => {
     cardListSelector
   );
   cardList.renderItems();
+  // adding new place to dom
+  const handleNewPlaceSubmit = data => {
+    console.log(data);
+    const inputName = cardTitle.value;
+    const inputValue = cardLink.value;
+    api.addCard(data).then(res => {
+      const place = new Card(
+        inputName,
+        inputValue,
+        '.elements__template',
+        handleCardClick
+      );
+      const newCard = place.generateCard();
+      cardList.addItem(newCard);
+    });
+  };
+  const imageForm = new PopupWithForm({
+    popupSelector: '.modal__card',
+    handleSubmitForm: () => {
+      handleNewPlaceSubmit();
+    },
+  });
+  addBtn.addEventListener('click', () => imageForm.open());
 });
 
 const profileInfo = new UserInfo(nameInput, professionInput);
@@ -95,24 +118,4 @@ const handleCardClick = data => {
 };
 // adding initial card to the DOM
 
-const handleNewPlaceSubmit = () => {
-  const inputName = cardTitle.value;
-  const inputValue = cardLink.value;
-  const place = new Card(
-    inputName,
-    inputValue,
-    '.elements__template',
-    handleCardClick
-  );
-  const newCard = place.generateCard();
-  cardList.addItem(newCard);
-};
-const imageForm = new PopupWithForm({
-  popupSelector: '.modal__card',
-  handleSubmitForm: () => {
-    handleNewPlaceSubmit();
-  },
-});
-
 editBtn.addEventListener('click', () => profileForm.open());
-addBtn.addEventListener('click', () => imageForm.open());
