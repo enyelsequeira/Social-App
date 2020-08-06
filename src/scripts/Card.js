@@ -6,7 +6,8 @@ class Card {
     owner,
     cardSelector,
     handleCardClick,
-    handleDeleteClick
+    handleDeleteClick,
+    test
   ) {
     this._cardElement = cardSelector;
     // console.log(this._cardElement);
@@ -19,6 +20,7 @@ class Card {
     this._handleDeleteClick = handleDeleteClick;
 
     this._handleCardClick = handleCardClick;
+    this._test = test;
   }
 
   id() {
@@ -72,10 +74,10 @@ class Card {
 
     deleteButton.addEventListener('click', () => {
       // console.log('2');
-
+      this._test();
       this._handleDeleteClick(this.id());
 
-      deleteButton.parentElement.remove();
+      // deleteButton.parentElement.remove();
     });
   }
 }

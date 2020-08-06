@@ -43,6 +43,11 @@ const permanentDelete = new PopupWithForm({
     permanentDelete.close();
   },
 });
+const test = () => {
+  permanentDelete.open();
+  console.log('testing');
+};
+
 api.getCardList().then(res => {
   // console.log(res);
   const cardList = new Section(
@@ -57,10 +62,8 @@ api.getCardList().then(res => {
           owner,
           '.elements__template',
           handleCardClick,
-          handleDeleteClick
-          // test: ()=>{
-
-          // }
+          handleDeleteClick,
+          test
         );
         const cardElement = card.generateCard();
         cardList.setItem(cardElement);
