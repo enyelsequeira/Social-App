@@ -21,6 +21,7 @@ class Api {
 
   // GET https://around.nomoreparties.co/v1/groupId/users/me
   getUserInfo() {
+    console.log(`${this._baseUrl}/users/me`);
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
@@ -31,13 +32,33 @@ class Api {
       .catch(err => console.log(err));
   }
 
+  // PATCH https://around.nomoreparties.co/v1/groupId/users/me
+  setUserInfo({ name, about }) {
+    console.log(name, about);
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+      method: 'PATCH',
+      body: JSON.stringify({
+        name,
+        about,
+      }),
+    })
+      .then(res => {
+        return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
+      })
+
+      .catch(err => console.log(err));
+  }
+
+  // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
+  setUserAvatar({ avatar }) {}
+
   getAppInfo() {
     // resolve all the above promises // not needed
   }
 
   // POST https://around.nomoreparties.co/v1/groupId/cards
   addCard({ name, link }) {
-    console.log(name);
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: 'POST',
@@ -54,17 +75,22 @@ class Api {
   }
 
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
-  removeCard(cardID) {}
+  removeCard(cardId) {
+    // console.log(cardId);
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      headers: this._headers,
+      method: 'DELETE',
+    })
+      .then(res => {
+        return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
+      })
+
+      .catch(err => console.log(err));
+  }
 
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   changeLikeCardStatus(cardID, like) {}
-
-  // PATCH https://around.nomoreparties.co/v1/groupId/users/me
-  setUserInfo({ name, about }) {}
-
-  // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
-  setUserAvatar({ avatar }) {}
 }
 
 export default Api;

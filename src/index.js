@@ -10,6 +10,12 @@ import {
   addBtn,
   cardTitle,
   cardLink,
+  nameUpdate,
+  professionUpdate,
+  formName,
+  formProfession,
+  profileImage,
+  trashBtn,
 } from './utils/constants.js';
 import PopUpWithImage from './scripts/PopupWithImage.js';
 import UserInfo from './scripts/UserInfo.js';
@@ -26,18 +32,35 @@ const api = new Api({
   },
 });
 
+const handleDeleteClick = cardId => {
+  api.removeCard(cardId);
+  console.log('isnde delete card');
+};
+const permanentDelete = new PopupWithForm({
+  popupSelector: '.modal__deleteimage',
+  handleSubmitForm: () => {
+    handleDeleteClick();
+    permanentDelete.close();
+  },
+});
 api.getCardList().then(res => {
   // console.log(res);
   const cardList = new Section(
     {
       data: res,
-      renderer: ({ name, link }) => {
-        // console.log(data);
+      renderer: ({ name, link, _id, owner }) => {
+        // console.log(_id);
         const card = new Card(
           name,
           link,
+          _id,
+          owner,
           '.elements__template',
-          handleCardClick
+          handleCardClick,
+          handleDeleteClick
+          // test: ()=>{
+
+          // }
         );
         const cardElement = card.generateCard();
         cardList.setItem(cardElement);
@@ -47,14 +70,15 @@ api.getCardList().then(res => {
   );
   cardList.renderItems();
   // adding new place to dom
-  const handleNewPlaceSubmit = data => {
-    console.log(data);
-    const inputName = cardTitle.value;
-    const inputValue = cardLink.value;
-    api.addCard(data).then(res => {
+  const handleNewPlaceSubmit = () => {
+    const name = cardTitle.value;
+    const link = cardLink.value;
+
+    api.addCard({ name, link }).then(res => {
+      console.log(res);
       const place = new Card(
-        inputName,
-        inputValue,
+        name,
+        link,
         '.elements__template',
         handleCardClick
       );
@@ -64,29 +88,53 @@ api.getCardList().then(res => {
   };
   const imageForm = new PopupWithForm({
     popupSelector: '.modal__card',
-    handleSubmitForm: () => {
+    handleSubmitForm: data => {
       handleNewPlaceSubmit();
     },
   });
   addBtn.addEventListener('click', () => imageForm.open());
 });
 
-const profileInfo = new UserInfo(nameInput, professionInput);
-api.getUserInfo().then(({ name, about }) => {
-  // console.log(name, about);
-  profileInfo.setUserInfo({ userName: name, userDescription: about });
+const profileInfo = new UserInfo({
+  userNameSelector: nameUpdate,
+  userDescriptionSelector: professionUpdate,
+});
+api.getUserInfo().then(res => {
+  // console.log(res);
+  profileInfo.setUserInfo({ userName: res.name, userDescription: res.about });
 });
 
 const handlingProfileEdit = () => {
-  profileInfo.setUserInfo();
+  const name = formName.value;
+  const about = formProfession.value;
+
+  api.setUserInfo({ name, about }).then(res => {
+    // console.log(res);
+    profileInfo.setUserInfo({ userName: name, userDescription: about });
+  });
 };
 
 const profileForm = new PopupWithForm({
   popupSelector: '.modal__edit',
   handleSubmitForm: () => {
+    // console.log(data);
     handlingProfileEdit();
     profileForm.close();
   },
+});
+/// changing picture logic below?
+const handleChangePic = () => {
+  console.log('changin pic');
+};
+const editProfilePic = new PopupWithForm({
+  popupSelector: '.modal__addimage',
+  handleSubmitForm: () => {
+    handleChangePic();
+    profileForm.close();
+  },
+});
+profileImage.addEventListener('click', () => {
+  editProfilePic.open();
 });
 
 const defaultConfig = {

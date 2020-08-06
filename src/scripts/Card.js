@@ -1,12 +1,29 @@
 class Card {
-  constructor(name, link, cardSelector, handleCardClick) {
+  constructor(
+    name,
+    link,
+    id,
+    owner,
+    cardSelector,
+    handleCardClick,
+    handleDeleteClick
+  ) {
     this._cardElement = cardSelector;
+    // console.log(this._cardElement);
     // getting the entire element below
     this._title = name;
     this._image = link;
-    // console.log(this._title);
+    this._id = id;
+    this._owner = owner;
+    // console.log(this._id);
+    this._handleDeleteClick = handleDeleteClick;
 
     this._handleCardClick = handleCardClick;
+  }
+
+  id() {
+    // console.log(this._id);
+    return this._id;
   }
 
   _getTemplate() {
@@ -16,10 +33,6 @@ class Card {
       .cloneNode(true);
     return cardElement;
   }
-
-  // getName() {
-  //   return this._title;
-  // }
 
   generateCard() {
     const element = this._getTemplate();
@@ -38,6 +51,14 @@ class Card {
   _setEventListeners() {
     const likeButton = this._card.querySelector('.elements__image-heart');
     const deleteButton = this._card.querySelector('.elements__trash');
+    // console.log(deleteButton);
+    const myId = '439c0a82223848fceaf17d04';
+
+    // console.log(this._owner._id);
+
+    if (this._owner._id !== myId) {
+      deleteButton.style.display = 'none';
+    }
     this._card
       .querySelector('.elements__image')
       .addEventListener('click', () => {
@@ -48,17 +69,14 @@ class Card {
     likeButton.addEventListener('click', () => {
       likeButton.classList.toggle('elements__image-heart_active');
     });
+
     deleteButton.addEventListener('click', () => {
+      // console.log('2');
+
+      this._handleDeleteClick(this.id());
+
       deleteButton.parentElement.remove();
     });
-
-    // cardImage.addEventListener('click', () => {
-    //   const cardCaption = document.querySelector('.modal__figure-caption');
-    //   const cardImg = document.querySelector('.modal__figure-image');
-    //   cardCaption.textContent = this._title;
-    //   cardImg.src = this._image;
-    //   toggleModalWindow(modalImageView);
-    // });
   }
 }
 export default Card;

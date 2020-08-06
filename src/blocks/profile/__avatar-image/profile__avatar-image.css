@@ -6,8 +6,31 @@
     border-radius: 50%;
     margin-right: 31px;
     /* margin-top: 36.25px; */
-
 }
+    
+.edit-button {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #FFFFFF;
+    background-size: 7.5px 7.5px;
+    background: url('../../../images/edit.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000000;
+    padding: 0;
+    transition: .5s ease;
+  }
+  .edit-button:hover {
+    cursor: pointer;
+    opacity: .6;
+  }
+  @media screen and (min-width: 1024px) {
+    .edit-button {
+      width: 24px;
+      height: 24px;
+      background-size: 10px 10px;
+    }
+  }
 
 @media screen and (max-width: 320px){
     .profile__avatar-image{

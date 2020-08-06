@@ -1,26 +1,19 @@
-import {
-  formName,
-  formProfession,
-  nameUpdate,
-  professionUpdate,
-} from '../utils/constants';
-
 class UserInfo {
-  constructor(userName, userProfession) {
-    this._name = userName;
-    this._job = userProfession;
-    // console.log(this._name);
-    // console.log(this._name);
+  constructor({ userNameSelector, userDescriptionSelector }) {
+    this._userNameElement = userNameSelector;
+    this._userDescriptionElement = userDescriptionSelector;
   }
 
   getUserInfo() {
-    this._name = formName;
-    this._job = formProfession;
+    return {
+      userName: this._userNameElement.textContent,
+      userDescription: this._userDescriptionElement.textContent,
+    };
   }
 
   setUserInfo({ userName, userDescription }) {
-    nameUpdate.textContent = userName;
-    professionUpdate.textContent = userDescription;
+    (this._userNameElement.textContent = userName),
+      (this._userDescriptionElement.textContent = userDescription);
   }
 }
 

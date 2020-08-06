@@ -16,7 +16,8 @@
         <main>      
             <section class="profile">
                 <img class="profile__avatar-image"  src="./images/profile.png" alt="image of the profile">
-        
+                <!-- <img src="./images/edit.png" alt="edit profile picture" class="edit-button edit-button_place_avatar"> -->
+            
             <div class="profile__info">
                 <h2 class="profile__name"></h2>
                 <p class="profile__profession"></p>
@@ -67,6 +68,30 @@
             </div>
         </div>
 
+        <div class="modal modal__addimage">
+            <div class="modal__info">
+                <button class="modal__close" aria-label="close modal" data-close>
+                </button>
+                <p class="modal__title"> Change Profile Picture</p>
+                <form class="modal__form">
+                    <input id="card-url"  type="url" class="modal__form-profession modal__form-link  modal__input"  name="Image link" value="image" required >
+                    <span id="card-url-error" class="modal__formerror"></span>
+                    <button class="modal__save-button" type="submit" value="save"> Save </button>
+                </form> 
+            </div>
+        </div>
+
+        <div class="modal modal__deleteimage">
+            <div class="modal__info">
+                <button class="modal__close" aria-label="close modal" data-close>
+                </button>
+                <form class="modal__form">
+                    <p class="modal__title"> Are you sure?</p>
+                    <button class="modal__save-button" type="submit" value="save"> Yes </button>
+                </form> 
+            </div>
+        </div>
+
 
         <div class="modal figure">
             <div class="modal__figure-container">
@@ -75,6 +100,7 @@
               <p class="modal__figure-caption"></p>
             </div>
           </div>
+        
         
 
 <!-- Testing -->
