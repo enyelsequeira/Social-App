@@ -6,6 +6,7 @@
 @import url('./__trash/elements__trash.css');
 @import url('./__image-heart_active/elements__image-heart_active.css');
 @import url('./__image/elements__image.css');
+@import url("./__like-count/elements__like-count.css");
 .elements{
     margin-bottom: 66px;
 }

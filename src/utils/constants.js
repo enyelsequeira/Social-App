@@ -64,3 +64,7 @@ export const professionUpdate = document.querySelector('.profile__profession');
 export const profileImage = document.querySelector('.profile__avatar-overlay');
 
 export const trashBtn = document.querySelector('.elements__trash');
+
+export const avatarImg = document.querySelector('.modal__form-avatar');
+// console.log(avatarImg);
+export const initialAvatar = document.querySelector('.profile__avatar-image');

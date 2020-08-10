@@ -34,7 +34,7 @@ class Api {
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
   setUserInfo({ name, about }) {
-    console.log(name, about);
+    // console.log(name, about);
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: 'PATCH',
@@ -51,7 +51,21 @@ class Api {
   }
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
-  setUserAvatar({ avatar }) {}
+  setUserAvatar({ avatar }) {
+    console.log(avatar, 'api');
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      headers: this._headers,
+      method: 'PATCH',
+      body: JSON.stringify({
+        avatar,
+      }),
+    })
+      .then(res => {
+        return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
+      })
+
+      .catch(err => console.log(err));
+  }
 
   getAppInfo() {
     // resolve all the above promises // not needed
@@ -90,7 +104,23 @@ class Api {
 
   // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
   // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  changeLikeCardStatus(cardID, like) {}
+  changeLikeCardStatus(cardID, like) {
+    return (like
+      ? fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+          headers: this._headers,
+          method: 'PUT',
+        })
+      : fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+          headers: this._headers,
+          method: 'DELETE',
+        })
+    )
+      .then(res => {
+        return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
+      })
+
+      .catch(err => console.log(err));
+  }
 }
 
 export default Api;

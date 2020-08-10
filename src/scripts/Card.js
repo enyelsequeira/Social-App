@@ -7,25 +7,54 @@ class Card {
     cardSelector,
     handleCardClick,
     handleDeleteClick,
-    test
+    handleLikeIcon,
+    handleLikeClick
   ) {
     this._cardElement = cardSelector;
-    // console.log(this._cardElement);
     // getting the entire element below
     this._title = name;
     this._image = link;
     this._id = id;
     this._owner = owner;
-    // console.log(this._id);
     this._handleDeleteClick = handleDeleteClick;
 
     this._handleCardClick = handleCardClick;
-    this._test = test;
+    this._handleLikeIcon = handleLikeIcon;
+    // console.log(this._handleLikeClick);
+    this._handleLikeClick = handleLikeClick;
   }
 
   id() {
     // console.log(this._id);
     return this._id;
+  }
+
+  _cardLikeBtn() {
+    return this._card.querySelector('.elements__image-heart');
+  }
+
+  _cardLikeCount() {
+    return this._card.querySelector('.elements__like-count');
+  }
+
+  wasLiked() {
+    return this._cardLikeBtn().classList.contains(
+      'elements__image-heart_active'
+    );
+  }
+
+  like(countLike) {
+    this._cardLikeBtn().classList.add('elements__image-heart_active');
+    this._cardLikeCount().textContent = countLike;
+  }
+
+  notliked(countLike) {
+    this._cardLikeBtn().classList.remove('elements__image-heart_active');
+    this._cardLikeCount().textContent = countLike;
+  }
+
+  likeLoading() {
+    this._cardLikeBtn.classList.add('elements__image-heart_active');
   }
 
   _getTemplate() {
@@ -53,11 +82,7 @@ class Card {
   _setEventListeners() {
     const likeButton = this._card.querySelector('.elements__image-heart');
     const deleteButton = this._card.querySelector('.elements__trash');
-    // console.log(deleteButton);
     const myId = '439c0a82223848fceaf17d04';
-
-    // console.log(this._owner._id);
-
     if (this._owner._id !== myId) {
       deleteButton.style.display = 'none';
     }
@@ -67,14 +92,14 @@ class Card {
         this._handleCardClick({ name: this._title, link: this._image });
       });
 
-    // console.log(cardImage);
-    likeButton.addEventListener('click', () => {
-      likeButton.classList.toggle('elements__image-heart_active');
-    });
+    // likeButton.addEventListener('click', () => {
+    //   likeButton.classList.toggle('elements__image-heart_active');
+    // });
 
+    likeButton.addEventListener('click', () => {
+      this._handleLikeClick(this._id);
+    });
     deleteButton.addEventListener('click', () => {
-      // console.log('2');
-      // this._test();
       this._handleDeleteClick(this.id());
 
       // deleteButton.parentElement.remove();

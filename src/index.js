@@ -16,6 +16,8 @@ import {
   formProfession,
   profileImage,
   trashBtn,
+  avatarImg,
+  initialAvatar,
 } from './utils/constants.js';
 import PopUpWithImage from './scripts/PopupWithImage.js';
 import UserInfo from './scripts/UserInfo.js';
@@ -70,6 +72,19 @@ api.getCardList().then(res => {
                 card.remove();
               });
             });
+          },
+          handleLikeClick => cardID => {
+            if (card.wasLiked() === false) {
+              api.changeLikeCardStatus(cardID, true).then(res => {
+                const countLike = res.likes.length;
+                card.like(countLike);
+              });
+            } else {
+              api.changeLikeCardStatus(cardID, false).then(res => {
+                const countLike = res.likes.length;
+                card.notliked(countLike);
+              });
+            }
           }
         );
         const cardElement = card.generateCard();
@@ -91,8 +106,7 @@ api.getCardList().then(res => {
         link,
         '.elements__template',
         handleCardClick,
-        handleDeleteClick,
-        test
+        handleDeleteClick
       );
       const newCard = place.generateCard();
       cardList.addItem(newCard);
@@ -136,7 +150,14 @@ const profileForm = new PopupWithForm({
 });
 /// changing picture logic below?
 const handleChangePic = () => {
-  console.log('changin pic');
+  const avatarValue = avatarImg.value;
+  console.log(avatarValue, 'testing');
+  api.setUserAvatar({ avatar: avatarValue }).then(res => {
+    console.log(res.avatar, 22);
+    initialAvatar.src = res.avatar;
+  });
+
+  // console.log('changin pic');
 };
 const editProfilePic = new PopupWithForm({
   popupSelector: '.modal__addimage',
