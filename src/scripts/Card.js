@@ -4,6 +4,7 @@ class Card {
     link,
     id,
     owner,
+    likes,
     cardSelector,
     handleCardClick,
     handleDeleteClick,
@@ -15,6 +16,8 @@ class Card {
     this._title = name;
     this._image = link;
     this._id = id;
+    this._likes = likes;
+    // console.log(this._likes);
     this._owner = owner;
     this._handleDeleteClick = handleDeleteClick;
 
@@ -75,6 +78,9 @@ class Card {
     this._card.querySelector('.elements__title').textContent = this._title;
     this._card.querySelector('.elements__image').alt = this._title;
     this._setEventListeners();
+    if (typeof this._likes !== 'undefined') {
+      this._cardLikeCount().textContent = this._likes.length;
+    }
 
     return this._card;
   }

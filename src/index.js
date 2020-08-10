@@ -25,6 +25,7 @@ import UserInfo from './scripts/UserInfo.js';
 import './pages/index.css';
 import PopupWithForm from './scripts/PopupWithForm.js';
 import Api from './scripts/Api.js';
+import { data } from 'autoprefixer';
 
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-3',
@@ -55,13 +56,15 @@ api.getCardList().then(res => {
   const cardList = new Section(
     {
       data: res,
-      renderer: ({ name, link, _id, owner }) => {
+      renderer: ({ name, link, _id, owner, likes }) => {
+        // console.log(likes.length);
         // console.log(_id);
         const card = new Card(
           name,
           link,
           _id,
           owner,
+          likes,
           '.elements__template',
           handleCardClick,
           id => {
@@ -76,6 +79,7 @@ api.getCardList().then(res => {
           handleLikeClick => cardID => {
             if (card.wasLiked() === false) {
               api.changeLikeCardStatus(cardID, true).then(res => {
+                console.log(res.likes.length);
                 const countLike = res.likes.length;
                 card.like(countLike);
               });
@@ -85,6 +89,17 @@ api.getCardList().then(res => {
                 card.notliked(countLike);
               });
             }
+          },
+          handleLikeIcon => {
+            console.log(likes);
+            if (likes.length > 0) {
+              likes.forEach(cardLikes => {
+                if (cardLikes._id) {
+                  card.likeLoading();
+                }
+              });
+            }
+            console.log(1);
           }
         );
         const cardElement = card.generateCard();
@@ -100,7 +115,7 @@ api.getCardList().then(res => {
     const link = cardLink.value;
 
     api.addCard({ name, link }).then(res => {
-      console.log(res);
+      // console.log(res);
       const place = new Card(
         name,
         link,
