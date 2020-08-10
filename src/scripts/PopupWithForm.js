@@ -27,5 +27,10 @@ class PopupWithForm extends Popup {
       });
     super.setEventListeners();
   }
+
+  setSubmitAction(action) {
+    this._handleSubmitForm = action;
+  }
 }
+
 export default PopupWithForm;

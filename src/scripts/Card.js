@@ -74,7 +74,7 @@ class Card {
 
     deleteButton.addEventListener('click', () => {
       // console.log('2');
-      this._test();
+      // this._test();
       this._handleDeleteClick(this.id());
 
       // deleteButton.parentElement.remove();

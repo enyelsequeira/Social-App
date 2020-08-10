@@ -43,10 +43,10 @@ const permanentDelete = new PopupWithForm({
     permanentDelete.close();
   },
 });
-const test = () => {
-  permanentDelete.open();
-  console.log('testing');
-};
+// const test = () => {
+//   permanentDelete.open();
+//   console.log('testing');
+// };
 
 api.getCardList().then(res => {
   // console.log(res);
@@ -62,8 +62,15 @@ api.getCardList().then(res => {
           owner,
           '.elements__template',
           handleCardClick,
-          handleDeleteClick,
-          test
+          id => {
+            permanentDelete.open();
+            permanentDelete.setSubmitAction(() => {
+              console.log('id', id);
+              handleDeleteClick(id).then(() => {
+                card.remove();
+              });
+            });
+          }
         );
         const cardElement = card.generateCard();
         cardList.setItem(cardElement);
@@ -83,7 +90,9 @@ api.getCardList().then(res => {
         name,
         link,
         '.elements__template',
-        handleCardClick
+        handleCardClick,
+        handleDeleteClick,
+        test
       );
       const newCard = place.generateCard();
       cardList.addItem(newCard);
