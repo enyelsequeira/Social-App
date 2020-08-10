@@ -61,6 +61,6 @@ export const formProfession = document.querySelector('.modal__form-profession');
 export const nameUpdate = document.querySelector('.profile__name');
 export const professionUpdate = document.querySelector('.profile__profession');
 // image profile
-export const profileImage = document.querySelector('.profile__avatar-image');
+export const profileImage = document.querySelector('.profile__avatar-overlay');
 
 export const trashBtn = document.querySelector('.elements__trash');
