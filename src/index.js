@@ -118,11 +118,14 @@ api.getCardList().then(res => {
     const owner = '';
     const likes = '';
 
-    api.addCard({ name, link, _id, owner, likes }).then(res => {
+    api.addCard({ name, link }).then(res => {
       console.log(res);
       const place = new Card(
         name,
         link,
+        res.id,
+        res.owner,
+        res.likes,
         '.elements__template',
         handleCardClick,
         id => {
