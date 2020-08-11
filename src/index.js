@@ -71,8 +71,9 @@ api.getCardList().then(res => {
             permanentDelete.open();
             permanentDelete.setSubmitAction(() => {
               console.log('id', id);
-              handleDeleteClick(id).then(() => {
-                card.remove();
+              handleDeleteClick(id).then(results => {
+                console.log(results);
+                card.removeCard();
               });
             });
           },
@@ -113,15 +114,27 @@ api.getCardList().then(res => {
   const handleNewPlaceSubmit = () => {
     const name = cardTitle.value;
     const link = cardLink.value;
+    const _id = '';
+    const owner = '';
+    const likes = '';
 
-    api.addCard({ name, link }).then(res => {
-      // console.log(res);
+    api.addCard({ name, link, _id, owner, likes }).then(res => {
+      console.log(_id, res.owner, res.likes);
       const place = new Card(
         name,
         link,
         '.elements__template',
-        handleCardClick,
-        handleDeleteClick
+        handleCardClick
+        // handleDeleteClick
+        // id => {
+        //   permanentDelete.open();
+        //   permanentDelete.setSubmitAction(() => {
+        //     console.log('id', id);
+        //     handleDeleteClick(id).then(() => {
+        //       card.deleteCard();
+        //     });
+        //   });
+        // }
       );
       const newCard = place.generateCard();
       cardList.addItem(newCard);

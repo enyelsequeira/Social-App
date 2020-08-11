@@ -85,6 +85,13 @@ class Card {
     return this._card;
   }
 
+  removeCard() {
+    // console.log(this._card);
+    return this._card.remove();
+    // this._card.remove();
+    // this._card = null;
+  }
+
   _setEventListeners() {
     const likeButton = this._card.querySelector('.elements__image-heart');
     const deleteButton = this._card.querySelector('.elements__trash');
