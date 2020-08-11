@@ -72,6 +72,7 @@ class Card {
     const element = this._getTemplate();
 
     this._card = element;
+
     this._card.querySelector(
       '.elements__image'
     ).style.backgroundImage = `url(${this._image})`;
@@ -86,10 +87,9 @@ class Card {
   }
 
   removeCard() {
-    // console.log(this._card);
-    return this._card.remove();
-    // this._card.remove();
-    // this._card = null;
+    console.log(4444444);
+    this._card.remove();
+    this._card = null;
   }
 
   _setEventListeners() {

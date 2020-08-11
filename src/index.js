@@ -25,7 +25,6 @@ import UserInfo from './scripts/UserInfo.js';
 import './pages/index.css';
 import PopupWithForm from './scripts/PopupWithForm.js';
 import Api from './scripts/Api.js';
-import { data } from 'autoprefixer';
 
 const api = new Api({
   baseUrl: 'https://around.nomoreparties.co/v1/group-3',
@@ -36,8 +35,7 @@ const api = new Api({
 });
 
 const handleDeleteClick = cardId => {
-  api.removeCard(cardId);
-  console.log('isnde delete card');
+  return api.removeCard(cardId);
 };
 const permanentDelete = new PopupWithForm({
   popupSelector: '.modal__deleteimage',
@@ -71,8 +69,10 @@ api.getCardList().then(res => {
             permanentDelete.open();
             permanentDelete.setSubmitAction(() => {
               console.log('id', id);
-              handleDeleteClick(id).then(results => {
-                console.log(results);
+              console.log('before the function');
+              handleDeleteClick(id).then(() => {
+                // console.log(id);
+                // console.log(results);
                 card.removeCard();
               });
             });
@@ -114,12 +114,9 @@ api.getCardList().then(res => {
   const handleNewPlaceSubmit = () => {
     const name = cardTitle.value;
     const link = cardLink.value;
-    const _id = '';
-    const owner = '';
-    const likes = '';
 
-    api.addCard({ name, link, _id, owner, likes }).then(res => {
-      console.log(_id, res.owner, res.likes);
+    api.addCard({ name, link }).then(res => {
+      console.log(res);
       const place = new Card(
         name,
         link,
@@ -222,9 +219,9 @@ const addCardValidation = new FormValidator(defaultConfig, addCardForm);
 editProfileValidation.enableValidation();
 addCardValidation.enableValidation();
 
-const handleCardClick = data => {
-  modalWithImage.open(data);
-};
 // adding initial card to the DOM
 
 editBtn.addEventListener('click', () => profileForm.open());
+const handleCardClick = data => {
+  modalWithImage.open(data);
+};
