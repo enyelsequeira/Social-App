@@ -8,8 +8,8 @@ class Card {
     cardSelector,
     handleCardClick,
     handleDeleteClick,
-    handleLikeIcon,
-    handleLikeClick
+    handleLikeClick,
+    handleLikeIcon
   ) {
     this._cardElement = cardSelector;
     // getting the entire element below

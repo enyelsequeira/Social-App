@@ -114,18 +114,16 @@ api.getCardList().then(res => {
   const handleNewPlaceSubmit = () => {
     const name = cardTitle.value;
     const link = cardLink.value;
-    const _id = '';
-    const owner = '';
-    const likes = '';
 
     api.addCard({ name, link }).then(res => {
       console.log(res);
       const place = new Card(
         name,
         link,
-        res.id,
+        res._id,
         res.owner,
         res.likes,
+        console.log(res._id, res.owner, res.likes, 'helloooo'),
         '.elements__template',
         handleCardClick,
         id => {
@@ -140,6 +138,17 @@ api.getCardList().then(res => {
             });
           });
         },
+        handleLikeIcon => {
+          console.log(likes);
+          if (res.likes.length > 0) {
+            res.likes.forEach(cardLikes => {
+              if (cardLikes._id) {
+                place.likeLoading();
+              }
+            });
+          }
+          console.log(1);
+        },
         handleLikeClick => cardID => {
           if (place.wasLiked() === false) {
             api.changeLikeCardStatus(cardID, true).then(res => {
@@ -153,17 +162,6 @@ api.getCardList().then(res => {
               place.notliked(countLike);
             });
           }
-        },
-        handleLikeIcon => {
-          console.log(likes);
-          if (likes.length > 0) {
-            likes.forEach(cardLikes => {
-              if (cardLikes._id) {
-                place.likeLoading();
-              }
-            });
-          }
-          console.log(1);
         }
       );
       const newCard = place.generateCard();
