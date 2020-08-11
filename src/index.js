@@ -18,6 +18,8 @@ import {
   trashBtn,
   avatarImg,
   initialAvatar,
+  myId,
+  saveButton,
 } from './utils/constants.js';
 import PopUpWithImage from './scripts/PopupWithImage.js';
 import UserInfo from './scripts/UserInfo.js';
@@ -34,6 +36,7 @@ const api = new Api({
   },
 });
 
+// console.log(myId);
 const handleDeleteClick = cardId => {
   return api.removeCard(cardId);
 };
@@ -73,31 +76,31 @@ api.getCardList().then(res => {
               });
             });
           },
-          handleLikeClick => cardID => {
-            console.log(cardID);
+          handleLikeClick => {
+            // console.log(cardID);
             if (card.wasLiked() === false) {
-              api.changeLikeCardStatus(cardID, true).then(res => {
-                console.log(res.likes.length);
+              api.changeLikeCardStatus(handleLikeClick, true).then(res => {
+                console.log(res.likes.length, 'testing inside click');
                 const countLike = res.likes.length;
                 card.like(countLike);
               });
             } else {
-              api.changeLikeCardStatus(cardID, false).then(res => {
+              api.changeLikeCardStatus(handleLikeClick, false).then(res => {
                 const countLike = res.likes.length;
                 card.notliked(countLike);
               });
             }
           },
           handleLikeIcon => {
-            console.log(likes);
+            console.log('runnin here');
+            console.log(likes, 'tesitng inse icon');
             if (likes.length > 0) {
               likes.forEach(cardLikes => {
-                if (cardLikes._id) {
+                if (cardLikes._id === myId) {
                   card.likeLoading();
                 }
               });
             }
-            console.log(1);
           }
         );
         const cardElement = card.generateCard();
@@ -160,6 +163,8 @@ api.getCardList().then(res => {
           }
         }
       );
+      renderLoading(true);
+      console.log(saveButton.textContent);
       const newCard = place.generateCard();
       cardList.addItem(newCard);
     });
@@ -185,10 +190,11 @@ api.getUserInfo().then(res => {
 const handlingProfileEdit = () => {
   const name = formName.value;
   const about = formProfession.value;
-
+  renderLoading(false);
   api.setUserInfo({ name, about }).then(res => {
     // console.log(res);
     profileInfo.setUserInfo({ userName: name, userDescription: about });
+    renderLoading(true);
   });
 };
 
@@ -204,17 +210,24 @@ const profileForm = new PopupWithForm({
 const handleChangePic = () => {
   const avatarValue = avatarImg.value;
   console.log(avatarValue, 'testing');
+  renderLoading(false);
+  console.log(saveButton.textContent);
+
   api.setUserAvatar({ avatar: avatarValue }).then(res => {
     console.log(res.avatar, 22);
     initialAvatar.src = res.avatar;
   });
+  renderLoading(true);
+  console.log(saveButton.textContent);
 
   // console.log('changin pic');
 };
+
 const editProfilePic = new PopupWithForm({
   popupSelector: '.modal__addimage',
   handleSubmitForm: () => {
     handleChangePic();
+
     profileForm.close();
   },
 });
@@ -251,4 +264,12 @@ addCardValidation.enableValidation();
 editBtn.addEventListener('click', () => profileForm.open());
 const handleCardClick = data => {
   modalWithImage.open(data);
+};
+
+const renderLoading = isLoading => {
+  if (isLoading) {
+    saveButton.textContent = 'Saving...';
+  } else {
+    saveButton.textContent = 'Save';
+  }
 };

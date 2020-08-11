@@ -68,3 +68,5 @@ export const trashBtn = document.querySelector('.elements__trash');
 export const avatarImg = document.querySelector('.modal__form-avatar');
 // console.log(avatarImg);
 export const initialAvatar = document.querySelector('.profile__avatar-image');
+export const myId = '439c0a82223848fceaf17d04';
+export const saveButton = document.querySelector('.modal__save');
