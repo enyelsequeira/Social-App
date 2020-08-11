@@ -123,7 +123,6 @@ api.getCardList().then(res => {
         res._id,
         res.owner,
         res.likes,
-        console.log(res._id, res.owner, res.likes, 'helloooo'),
         '.elements__template',
         handleCardClick,
         id => {
