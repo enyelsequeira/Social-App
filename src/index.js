@@ -44,10 +44,6 @@ const permanentDelete = new PopupWithForm({
     permanentDelete.close();
   },
 });
-// const test = () => {
-//   permanentDelete.open();
-//   console.log('testing');
-// };
 
 api.getCardList().then(res => {
   // console.log(res);
@@ -78,6 +74,7 @@ api.getCardList().then(res => {
             });
           },
           handleLikeClick => cardID => {
+            console.log(cardID);
             if (card.wasLiked() === false) {
               api.changeLikeCardStatus(cardID, true).then(res => {
                 console.log(res.likes.length);
