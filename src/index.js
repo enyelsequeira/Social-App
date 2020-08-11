@@ -114,24 +114,54 @@ api.getCardList().then(res => {
   const handleNewPlaceSubmit = () => {
     const name = cardTitle.value;
     const link = cardLink.value;
+    const _id = '';
+    const owner = '';
+    const likes = '';
 
-    api.addCard({ name, link }).then(res => {
+    api.addCard({ name, link, _id, owner, likes }).then(res => {
       console.log(res);
       const place = new Card(
         name,
         link,
         '.elements__template',
-        handleCardClick
-        // handleDeleteClick
-        // id => {
-        //   permanentDelete.open();
-        //   permanentDelete.setSubmitAction(() => {
-        //     console.log('id', id);
-        //     handleDeleteClick(id).then(() => {
-        //       card.deleteCard();
-        //     });
-        //   });
-        // }
+        handleCardClick,
+        id => {
+          permanentDelete.open();
+          permanentDelete.setSubmitAction(() => {
+            console.log('id', id);
+            console.log('before the function');
+            handleDeleteClick(id).then(() => {
+              // console.log(id);
+              // console.log(results);
+              place.removeCard();
+            });
+          });
+        },
+        handleLikeClick => cardID => {
+          if (place.wasLiked() === false) {
+            api.changeLikeCardStatus(cardID, true).then(res => {
+              console.log(res.likes.length);
+              const countLike = res.likes.length;
+              place.like(countLike);
+            });
+          } else {
+            api.changeLikeCardStatus(cardID, false).then(res => {
+              const countLike = res.likes.length;
+              place.notliked(countLike);
+            });
+          }
+        },
+        handleLikeIcon => {
+          console.log(likes);
+          if (likes.length > 0) {
+            likes.forEach(cardLikes => {
+              if (cardLikes._id) {
+                place.likeLoading();
+              }
+            });
+          }
+          console.log(1);
+        }
       );
       const newCard = place.generateCard();
       cardList.addItem(newCard);
