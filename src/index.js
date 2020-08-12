@@ -141,14 +141,14 @@ api.getPageInfo().then(([cards, userInfo]) => {
         },
         handleLikeClick => cardID => {
           if (place.wasLiked() === false) {
-            api.changeLikeCardStatus(cardID, true).then(res => {
+            api.changeLikeCardStatus(cardID, true).then(results => {
               // console.log(res.likes.length);
-              const countLike = res.likes.length;
+              const countLike = results.likes.length;
               place.like(countLike);
             });
           } else {
-            api.changeLikeCardStatus(cardID, false).then(res => {
-              const countLike = res.likes.length;
+            api.changeLikeCardStatus(cardID, false).then(results => {
+              const countLike = results.likes.length;
               place.notliked(countLike);
             });
           }

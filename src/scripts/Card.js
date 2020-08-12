@@ -107,7 +107,6 @@ class Card {
   _setEventListeners() {
     const likeButton = this._card.querySelector('.elements__image-heart');
     const deleteButton = this._card.querySelector('.elements__trash');
-    const myId = '439c0a82223848fceaf17d04';
     if (this._owner._id !== myId) {
       deleteButton.style.display = 'none';
     }
