@@ -226,7 +226,7 @@ const editProfilePic = new PopupWithForm({
   handleSubmitForm: () => {
     handleChangePic();
 
-    profileForm.close();
+    editProfilePic.close();
   },
 });
 profileImage.addEventListener('click', () => {
