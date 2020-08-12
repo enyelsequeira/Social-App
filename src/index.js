@@ -49,11 +49,10 @@ const permanentDelete = new PopupWithForm({
   },
 });
 
-api.getCardList().then(res => {
-  // console.log(res);
+api.getPageInfo().then(([cards, userInfo]) => {
   const cardList = new Section(
     {
-      data: res,
+      data: cards,
       renderer: ({ name, link, _id, owner, likes }) => {
         // console.log(likes.length);
         // console.log(_id);
@@ -68,20 +67,15 @@ api.getCardList().then(res => {
           id => {
             permanentDelete.open();
             permanentDelete.setSubmitAction(() => {
-              console.log('id', id);
-              console.log('before the function');
               handleDeleteClick(id).then(() => {
-                // console.log(id);
-                // console.log(results);
                 card.removeCard();
               });
             });
           },
           handleLikeClick => {
-            // console.log(cardID);
             if (card.wasLiked() === false) {
               api.changeLikeCardStatus(_id, true).then(res => {
-                console.log(res.likes.length, 'testing inside click');
+                // console.log(res.likes.length, 'testing inside click');
                 const countLike = res.likes.length;
                 card.like(countLike);
               });
@@ -93,8 +87,8 @@ api.getCardList().then(res => {
             }
           },
           handleLikeIcon => {
-            console.log('runnin here');
-            console.log(likes, 'tesitng inse icon');
+            // console.log('runnin here');
+            // console.log(likes, 'tesitng inse icon');
             if (likes.length > 0) {
               likes.forEach(cardLikes => {
                 if (cardLikes._id === myId) {
@@ -102,7 +96,8 @@ api.getCardList().then(res => {
                 }
               });
             }
-          }
+          },
+          userInfo._id
         );
         const cardElement = card.generateCard();
         cardList.setItem(cardElement);
@@ -117,7 +112,7 @@ api.getCardList().then(res => {
     const link = cardLink.value;
 
     api.addCard({ name, link }).then(res => {
-      console.log(res);
+      // console.log(res);
       const place = new Card(
         name,
         link,
@@ -129,8 +124,8 @@ api.getCardList().then(res => {
         id => {
           permanentDelete.open();
           permanentDelete.setSubmitAction(() => {
-            console.log('id', id);
-            console.log('before the function');
+            // console.log('id', id);
+            // console.log('before the function');
             handleDeleteClick(id).then(() => {
               // console.log(id);
               // console.log(results);
@@ -139,7 +134,7 @@ api.getCardList().then(res => {
           });
         },
         handleLikeIcon => {
-          console.log(likes);
+          // console.log(likes);
           if (res.likes.length > 0) {
             res.likes.forEach(cardLikes => {
               if (cardLikes._id) {
@@ -147,12 +142,12 @@ api.getCardList().then(res => {
               }
             });
           }
-          console.log(1);
+          // console.log(1);
         },
         handleLikeClick => cardID => {
           if (place.wasLiked() === false) {
             api.changeLikeCardStatus(cardID, true).then(res => {
-              console.log(res.likes.length);
+              // console.log(res.likes.length);
               const countLike = res.likes.length;
               place.like(countLike);
             });
@@ -165,7 +160,7 @@ api.getCardList().then(res => {
         }
       );
       renderLoading(true);
-      console.log(saveButton.textContent);
+      // console.log(saveButton.textContent);
       const newCard = place.generateCard();
       cardList.addItem(newCard);
     });
@@ -177,49 +172,51 @@ api.getCardList().then(res => {
     },
   });
   addBtn.addEventListener('click', () => imageForm.open());
-});
 
-const profileInfo = new UserInfo({
-  userNameSelector: nameUpdate,
-  userDescriptionSelector: professionUpdate,
-});
-api.getUserInfo().then(res => {
-  // console.log(res);
-  profileInfo.setUserInfo({ userName: res.name, userDescription: res.about });
-});
-
-const handlingProfileEdit = () => {
-  const name = formName.value;
-  const about = formProfession.value;
-  renderLoading(false);
-  api.setUserInfo({ name, about }).then(res => {
-    // console.log(res);
-    profileInfo.setUserInfo({ userName: name, userDescription: about });
-    renderLoading(true);
+  const profileInfo = new UserInfo({
+    userNameSelector: nameUpdate,
+    userDescriptionSelector: professionUpdate,
   });
-};
 
-const profileForm = new PopupWithForm({
-  popupSelector: '.modal__edit',
-  handleSubmitForm: () => {
-    // console.log(data);
-    handlingProfileEdit();
-    profileForm.close();
-  },
+  profileInfo.setUserInfo({
+    userName: userInfo.name,
+    userDescription: userInfo.about,
+  });
+  const handlingProfileEdit = () => {
+    const name = formName.value;
+    const about = formProfession.value;
+    renderLoading(false);
+    api.setUserInfo({ name, about }).then(res => {
+      // console.log(res);
+      profileInfo.setUserInfo({ userName: name, userDescription: about });
+      renderLoading(true);
+    });
+  };
+
+  const profileForm = new PopupWithForm({
+    popupSelector: '.modal__edit',
+    handleSubmitForm: () => {
+      // console.log(data);
+      handlingProfileEdit();
+      profileForm.close();
+    },
+  });
+  editBtn.addEventListener('click', () => profileForm.open());
 });
+
 /// changing picture logic below?
 const handleChangePic = () => {
   const avatarValue = avatarImgForm.value;
-  console.log(avatarValue, 'testing');
+  // console.log(avatarValue, 'testing');
   renderLoading(false);
-  console.log(saveButton.textContent);
+  // console.log(saveButton.textContent);
 
   api.setUserAvatar({ avatar: avatarValue }).then(res => {
-    console.log(res.avatar, 22);
+    // console.log(res.avatar, 22);
     initialAvatar.src = res.avatar;
   });
   renderLoading(true);
-  console.log(saveButton.textContent);
+  // console.log(saveButton.textContent);
 
   // console.log('changin pic');
 };
@@ -262,7 +259,6 @@ addCardValidation.enableValidation();
 
 // adding initial card to the DOM
 
-editBtn.addEventListener('click', () => profileForm.open());
 const handleCardClick = data => {
   modalWithImage.open(data);
 };

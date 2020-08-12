@@ -34,6 +34,10 @@ class Api {
       .catch(err => console.log(err));
   }
 
+  getPageInfo() {
+    return Promise.all([this.getCardList(), this.getUserInfo()]);
+  }
+
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me
   setUserInfo({ name, about }) {
     // console.log(name, about);

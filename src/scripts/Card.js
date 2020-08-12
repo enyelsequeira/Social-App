@@ -11,7 +11,8 @@ class Card {
     handleCardClick,
     handleDeleteClick,
     handleLikeClick,
-    handleLikeIcon
+    handleLikeIcon,
+    userId
   ) {
     this._cardElement = cardSelector;
     // getting the entire element below
@@ -21,6 +22,7 @@ class Card {
     this._likes = likes;
     // console.log(this._likes);
     this._owner = owner;
+    this._userId = userId;
     this._handleDeleteClick = handleDeleteClick;
 
     this._handleCardClick = handleCardClick;
@@ -85,17 +87,19 @@ class Card {
       this._cardLikeCount().textContent = this._likes.length;
     }
 
-    // if (this._likes > 0) {
-    //   this._likes.some(like => like._id === myId)
-    //     ? this._cardLikeBtn.classList.toggle('elements__image-heart_active')
-    //     : '';
-    // }
+    if (this.isLiked()) {
+      this._cardLikeBtn().classList.add('elements__image-heart_active');
+    }
 
     return this._card;
   }
 
+  isLiked() {
+    // console.log('is Lioked!');
+    return Boolean(this._likes.find(item => item._id === this._userId));
+  }
+
   removeCard() {
-    console.log(4444444);
     this._card.remove();
     this._card = null;
   }
