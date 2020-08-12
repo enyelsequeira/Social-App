@@ -3,9 +3,6 @@ import Card from './scripts/Card.js';
 import Section from './scripts/Section.js';
 import {
   cardListSelector,
-  initialCards,
-  nameInput,
-  professionInput,
   editBtn,
   addBtn,
   cardTitle,
@@ -15,8 +12,6 @@ import {
   formName,
   formProfession,
   profileImage,
-  trashBtn,
-  avatarImg,
   initialAvatar,
   myId,
   saveButton,
