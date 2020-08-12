@@ -1,3 +1,5 @@
+import { myId } from '../utils/constants';
+
 class Card {
   constructor(
     name,
@@ -82,6 +84,12 @@ class Card {
     if (typeof this._likes !== 'undefined') {
       this._cardLikeCount().textContent = this._likes.length;
     }
+
+    // if (this._likes > 0) {
+    //   this._likes.some(like => like._id === myId)
+    //     ? this._cardLikeBtn.classList.toggle('elements__image-heart_active')
+    //     : '';
+    // }
 
     return this._card;
   }

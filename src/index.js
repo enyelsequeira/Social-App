@@ -20,6 +20,7 @@ import {
   initialAvatar,
   myId,
   saveButton,
+  avatarImgForm,
 } from './utils/constants.js';
 import PopUpWithImage from './scripts/PopupWithImage.js';
 import UserInfo from './scripts/UserInfo.js';
@@ -79,13 +80,13 @@ api.getCardList().then(res => {
           handleLikeClick => {
             // console.log(cardID);
             if (card.wasLiked() === false) {
-              api.changeLikeCardStatus(handleLikeClick, true).then(res => {
+              api.changeLikeCardStatus(_id, true).then(res => {
                 console.log(res.likes.length, 'testing inside click');
                 const countLike = res.likes.length;
                 card.like(countLike);
               });
             } else {
-              api.changeLikeCardStatus(handleLikeClick, false).then(res => {
+              api.changeLikeCardStatus(_id, false).then(res => {
                 const countLike = res.likes.length;
                 card.notliked(countLike);
               });
@@ -208,7 +209,7 @@ const profileForm = new PopupWithForm({
 });
 /// changing picture logic below?
 const handleChangePic = () => {
-  const avatarValue = avatarImg.value;
+  const avatarValue = avatarImgForm.value;
   console.log(avatarValue, 'testing');
   renderLoading(false);
   console.log(saveButton.textContent);

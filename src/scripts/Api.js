@@ -21,11 +21,13 @@ class Api {
 
   // GET https://around.nomoreparties.co/v1/groupId/users/me
   getUserInfo() {
-    console.log(`${this._baseUrl}/users/me`);
+    // console.log(`${this._baseUrl}/users/me`);
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
       .then(res => {
+        // console.log('AAA', res);
+
         return res.ok ? res.json() : Promise.reject(`error${res.statusText}`);
       })
 
@@ -52,7 +54,8 @@ class Api {
 
   // PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
   setUserAvatar({ avatar }) {
-    console.log(avatar, 'api');
+    console.log(avatar, 'testttt1 api');
+    console.log(`${this._baseUrl}/users/me/avatar`);
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
       method: 'PATCH',
