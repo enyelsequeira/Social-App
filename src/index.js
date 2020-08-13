@@ -102,15 +102,17 @@ api.getPageInfo().then(([cards, userInfo]) => {
   );
   cardList.renderItems();
   // adding new place to dom
-  const handleNewPlaceSubmit = () => {
-    const name = cardTitle.value;
-    const link = cardLink.value;
+  const handleNewPlaceSubmit = data => {
+    // console.log(data);
+    // console.log(data.Title, 4554545);
+    // const name = cardTitle.value;
+    // const link = cardLink.value;
 
-    api.addCard({ name, link }).then(res => {
+    api.addCard({ name: data.Title, link: data.Imagelink }).then(res => {
       // console.log(res);
       const place = new Card(
-        name,
-        link,
+        res.name,
+        res.link,
         res._id,
         res.owner,
         res.likes,
@@ -163,7 +165,7 @@ api.getPageInfo().then(([cards, userInfo]) => {
   const imageForm = new PopupWithForm({
     popupSelector: '.modal__card',
     handleSubmitForm: data => {
-      handleNewPlaceSubmit();
+      handleNewPlaceSubmit(data);
     },
   });
   addBtn.addEventListener('click', () => imageForm.open());
@@ -177,22 +179,25 @@ api.getPageInfo().then(([cards, userInfo]) => {
     userName: userInfo.name,
     userDescription: userInfo.about,
   });
-  const handlingProfileEdit = () => {
-    const name = formName.value;
-    const about = formProfession.value;
+  const handlingProfileEdit = data => {
+    // const name = formName.value;
+    // const about = formProfession.value;
     renderLoading(false);
-    api.setUserInfo({ name, about }).then(res => {
+    api.setUserInfo({ name: data.name, about: data.job }).then(res => {
       // console.log(res);
-      profileInfo.setUserInfo({ userName: name, userDescription: about });
+      profileInfo.setUserInfo({
+        userName: data.name,
+        userDescription: data.job,
+      });
       renderLoading(true);
     });
   };
 
   const profileForm = new PopupWithForm({
     popupSelector: '.modal__edit',
-    handleSubmitForm: () => {
+    handleSubmitForm: data => {
       // console.log(data);
-      handlingProfileEdit();
+      handlingProfileEdit(data);
       profileForm.close();
     },
   });

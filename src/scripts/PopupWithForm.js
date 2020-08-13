@@ -13,7 +13,7 @@ class PopupWithForm extends Popup {
       this._form.querySelectorAll('.modal__input')
     );
     this._formValues = {};
-    inputValues.forEach(input => (this.formValues[input.name] = input.value));
+    inputValues.forEach(input => (this._formValues[input.name] = input.value));
     return this._formValues;
   }
 
@@ -22,7 +22,7 @@ class PopupWithForm extends Popup {
       .querySelector('.modal__form')
       .addEventListener('submit', evt => {
         evt.preventDefault();
-        this._handleSubmitForm();
+        this._handleSubmitForm(this._getInputValues());
         this.close();
       });
     super.setEventListeners();
