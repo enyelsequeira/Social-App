@@ -26,6 +26,8 @@
   * HTML, CSS
   * JavaScript Classes
   * Fetch
+  * Webpack
+  * Babel
  
 
 
