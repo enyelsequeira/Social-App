@@ -2,8 +2,8 @@
 
 ### Overview
 * This Project is a vanilla javascript app. The entire code base is done using Javascript classes and the app has a few functionalities described below. 
+* This app uses an external Api which mean that other users can add images and like the images
 * This app will consist of 3 different modals they will open accordingly one for editing the profile, one for adding an image to the DOM and one to display a bigger version of the image
-
 * This app uses an external Api, you will need a key to use it, with this key you can manipulate what you can do in the app. Ex: The trash button will only show if the cards belong to you as a the user, you will not be able to delete other users cards 
 
 ### Functionality
