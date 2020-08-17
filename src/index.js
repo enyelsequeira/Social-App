@@ -122,7 +122,6 @@ api.getPageInfo().then(([cards, userInfo]) => {
           permanentDelete.open();
           permanentDelete.setSubmitAction(() => {
             // console.log('id', id);
-            // console.log('before the function');
             handleDeleteClick(id).then(() => {
               // console.log(id);
               // console.log(results);
