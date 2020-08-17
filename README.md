@@ -14,12 +14,12 @@
 * It uses the fetch Api to get data accordingly.
 
 
-
+C:\Users\Enyel S\Desktop\yandex1\web_project_4\src\images\screenshot-rocks(18).png
 ### Images
 ![Image](src/images/screenshot-rocks1.png)
 ![Image](src/images/screenshot-rocks2.png)
 ![Image](src/images/screenshot-rocks3.png)
-![Image](src/images/screenshot-rocks4.png)
+![Image](src/images/screenshot-rocks8.png)
 
 
 ### Technologies
