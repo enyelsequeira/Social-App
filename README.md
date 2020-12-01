@@ -1,4 +1,6 @@
-# Project: Social App
+# Project: Social App 
+
+## view only desktop. Still in process as a full-stack
 
 ### Overview
 * This Project is a vanilla javascript app. The entire code base is done using Javascript classes and the app has a few functionalities described below. 
